@@ -15,8 +15,12 @@
 		C1CC5B1D25BBC834000D31B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CC5B1C25BBC834000D31B7 /* Assets.xcassets */; };
 		C1CC5B2025BBC834000D31B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1CC5B1E25BBC834000D31B7 /* LaunchScreen.storyboard */; };
 		C1CC5B2B25BBC835000D31B7 /* IichDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5B2A25BBC835000D31B7 /* IichDemoTests.swift */; };
-		C1CC5BF125BBD89C000D31B7 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5BF025BBD89C000D31B7 /* HomeScreenViewController.swift */; };
 		C1CC5C1025BBDB18000D31B7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C0F25BBDB18000D31B7 /* R.generated.swift */; };
+		C1CC5C4125BBF932000D31B7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C4025BBF932000D31B7 /* Constants.swift */; };
+		C1CC5C4F25BBFBC2000D31B7 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C4E25BBFBC2000D31B7 /* HomeScreenViewController.swift */; };
+		C1CC5C5425BBFE03000D31B7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */; };
+		C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */; };
+		C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +59,12 @@
 		C1CC5B2A25BBC835000D31B7 /* IichDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IichDemoTests.swift; sourceTree = "<group>"; };
 		C1CC5B2C25BBC835000D31B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1CC5B3125BBC835000D31B7 /* IichDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IichDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1CC5BF025BBD89C000D31B7 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		C1CC5C0F25BBDB18000D31B7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		C1CC5C4025BBF932000D31B7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C1CC5C4E25BBFBC2000D31B7 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAssist.swift; sourceTree = "<group>"; };
 		F1523F57C046DF40740D4E05 /* Pods-IichDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemoTests.release.xcconfig"; path = "Target Support Files/Pods-IichDemoTests/Pods-IichDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +130,7 @@
 		C1CC5B1225BBC834000D31B7 /* IichDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C1CC5C3F25BBF92A000D31B7 /* Helpers */,
 				C1CC5BEF25BBD85E000D31B7 /* HomeScreen */,
 				C1CC5BEB25BBD81F000D31B7 /* Resources */,
 				C1CC5BE725BBD6E7000D31B7 /* Commons */,
@@ -154,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				C1CC5B1C25BBC834000D31B7 /* Assets.xcassets */,
+				C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -161,9 +171,19 @@
 		C1CC5BEF25BBD85E000D31B7 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				C1CC5BF025BBD89C000D31B7 /* HomeScreenViewController.swift */,
+				C1CC5C4E25BBFBC2000D31B7 /* HomeScreenViewController.swift */,
+				C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */,
 			);
 			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		C1CC5C3F25BBF92A000D31B7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C1CC5C4025BBF932000D31B7 /* Constants.swift */,
+				C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		E8C5EF00BBCAB6CDB0987426 /* Pods */ = {
@@ -187,8 +207,8 @@
 			buildConfigurationList = C1CC5B3A25BBC835000D31B7 /* Build configuration list for PBXNativeTarget "IichDemo" */;
 			buildPhases = (
 				03AD7BAB7865F01C76E70063 /* [CP] Check Pods Manifest.lock */,
-				C1CC5B6A25BBCE79000D31B7 /* Swift Lint */,
 				C1CC5B7725BBCF6C000D31B7 /* Swift Format */,
+				C1CC5B6A25BBCE79000D31B7 /* Swift Lint */,
 				C1CC5C0325BBD9EC000D31B7 /* R.Swift */,
 				C1CC5B0C25BBC834000D31B7 /* Sources */,
 				C1CC5B0D25BBC834000D31B7 /* Frameworks */,
@@ -290,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1CC5C5425BBFE03000D31B7 /* Colors.xcassets in Resources */,
 				C1CC5B2025BBC834000D31B7 /* LaunchScreen.storyboard in Resources */,
 				C1CC5B1D25BBC834000D31B7 /* Assets.xcassets in Resources */,
 			);
@@ -476,9 +497,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */,
+				C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */,
 				C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */,
-				C1CC5BF125BBD89C000D31B7 /* HomeScreenViewController.swift in Sources */,
 				C1CC5C1025BBDB18000D31B7 /* R.generated.swift in Sources */,
+				C1CC5C4125BBF932000D31B7 /* Constants.swift in Sources */,
+				C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */,
+				C1CC5C4F25BBFBC2000D31B7 /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,7 +599,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -631,7 +655,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

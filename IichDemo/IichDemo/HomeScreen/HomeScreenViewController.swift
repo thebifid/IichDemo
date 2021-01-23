@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeScreenViewController.swift
 //  IichDemo
 //
 //  Created by Vasiliy Matveev on 23.01.2021.
@@ -7,15 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        view.backgroundColor = .orange
+
+        view.backgroundColor = .green
     }
-
-
 }
-

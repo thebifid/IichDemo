@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		0249E7CF2E343F93F5F796DD /* Pods_IichDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3B6A7ADFD5D0C930F3EE1E /* Pods_IichDemo.framework */; };
 		748204EB964FF94D2D0A8552 /* Pods_IichDemo_IichDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25191570FBAC85F6EA9308DE /* Pods_IichDemo_IichDemoUITests.framework */; };
+		C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */; };
+		C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA925BD70EB00AD8DE2 /* Boards.swift */; };
+		C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */; };
 		C1AA8DC2E69743FA1136253E /* Pods_IichDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A53C6403386A5A0CA2BFD29 /* Pods_IichDemoTests.framework */; };
+		C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */; };
 		C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5B1325BBC834000D31B7 /* AppDelegate.swift */; };
 		C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5B1525BBC834000D31B7 /* SceneDelegate.swift */; };
 		C1CC5B1D25BBC834000D31B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CC5B1C25BBC834000D31B7 /* Assets.xcassets */; };
@@ -21,6 +25,8 @@
 		C1CC5C5425BBFE03000D31B7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */; };
 		C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */; };
 		C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */; };
+		C1CC5C7E25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C7D25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift */; };
+		C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C8525BC3F1B000D31B7 /* Desks.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,10 @@
 		6D3B6A7ADFD5D0C930F3EE1E /* Pods_IichDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IichDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BAAFDBA0D54416CF78F114F /* Pods-IichDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemo.release.xcconfig"; path = "Target Support Files/Pods-IichDemo/Pods-IichDemo.release.xcconfig"; sourceTree = "<group>"; };
 		B2D97FDA3EDD583FFD8E00C2 /* Pods-IichDemo-IichDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemo-IichDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-IichDemo-IichDemoUITests/Pods-IichDemo-IichDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C14D4EA925BD70EB00AD8DE2 /* Boards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boards.swift; sourceTree = "<group>"; };
+		C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfo.swift; sourceTree = "<group>"; };
+		C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCell.swift; sourceTree = "<group>"; };
 		C1CC5B1025BBC834000D31B7 /* IichDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IichDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CC5B1325BBC834000D31B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1CC5B1525BBC834000D31B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +75,8 @@
 		C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAssist.swift; sourceTree = "<group>"; };
+		C1CC5C7D25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreenViewController+TableView.swift"; sourceTree = "<group>"; };
+		C1CC5C8625BC3F1B000D31B7 /* Desks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Desks.xcdatamodel; sourceTree = "<group>"; };
 		F1523F57C046DF40740D4E05 /* Pods-IichDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemoTests.release.xcconfig"; path = "Target Support Files/Pods-IichDemoTests/Pods-IichDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +118,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C14D4EA325BD689200AD8DE2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C14D4EB425BDA36400AD8DE2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C14D4EA925BD70EB00AD8DE2 /* Boards.swift */,
+				C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C1CC5B0725BBC834000D31B7 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +159,8 @@
 		C1CC5B1225BBC834000D31B7 /* IichDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C14D4EB425BDA36400AD8DE2 /* Models */,
+				C14D4EA325BD689200AD8DE2 /* Services */,
 				C1CC5C3F25BBF92A000D31B7 /* Helpers */,
 				C1CC5BEF25BBD85E000D31B7 /* HomeScreen */,
 				C1CC5BEB25BBD81F000D31B7 /* Resources */,
@@ -162,6 +193,7 @@
 		C1CC5BEB25BBD81F000D31B7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C1CC5C8525BC3F1B000D31B7 /* Desks.xcdatamodeld */,
 				C1CC5B1C25BBC834000D31B7 /* Assets.xcassets */,
 				C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */,
 			);
@@ -172,7 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				C1CC5C4E25BBFBC2000D31B7 /* HomeScreenViewController.swift */,
+				C1CC5C7D25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift */,
 				C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */,
+				C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -496,10 +530,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */,
+				C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */,
 				C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */,
+				C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */,
 				C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */,
+				C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */,
 				C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */,
+				C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */,
 				C1CC5C1025BBDB18000D31B7 /* R.generated.swift in Sources */,
+				C1CC5C7E25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift in Sources */,
 				C1CC5C4125BBF932000D31B7 /* Constants.swift in Sources */,
 				C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */,
 				C1CC5C4F25BBFBC2000D31B7 /* HomeScreenViewController.swift in Sources */,
@@ -834,6 +874,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C1CC5C8525BC3F1B000D31B7 /* Desks.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C1CC5C8625BC3F1B000D31B7 /* Desks.xcdatamodel */,
+			);
+			currentVersion = C1CC5C8625BC3F1B000D31B7 /* Desks.xcdatamodel */;
+			path = Desks.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C1CC5B0825BBC834000D31B7 /* Project object */;
 }

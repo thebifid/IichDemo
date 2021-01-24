@@ -8,15 +8,13 @@
 import UIKit
 
 class AlertAssist {
-    static func alertWithInput(title: String, message: String, handler: @escaping (UIAlertAction) -> Void) -> UIAlertController {
+    static func alertWithInput(title: String, message: String, handler: @escaping (String) -> Void) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
-        alert.addTextField { textField in
-            textField.text = ""
-        }
-
+        alert.addTextField()
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: handler))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            handler(alert.textFields?.first?.text ?? "")
+        }))
 
         return alert
     }

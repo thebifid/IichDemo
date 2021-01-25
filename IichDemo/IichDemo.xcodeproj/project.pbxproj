@@ -25,7 +25,6 @@
 		C1CC5C5425BBFE03000D31B7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */; };
 		C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */; };
 		C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */; };
-		C1CC5C7E25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C7D25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift */; };
 		C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C8525BC3F1B000D31B7 /* Desks.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +74,6 @@
 		C1CC5C5325BBFE03000D31B7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAssist.swift; sourceTree = "<group>"; };
-		C1CC5C7D25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreenViewController+TableView.swift"; sourceTree = "<group>"; };
 		C1CC5C8625BC3F1B000D31B7 /* Desks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Desks.xcdatamodel; sourceTree = "<group>"; };
 		F1523F57C046DF40740D4E05 /* Pods-IichDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemoTests.release.xcconfig"; path = "Target Support Files/Pods-IichDemoTests/Pods-IichDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				C1CC5C4E25BBFBC2000D31B7 /* HomeScreenViewController.swift */,
-				C1CC5C7D25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift */,
 				C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */,
 				C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */,
 			);
@@ -539,7 +536,6 @@
 				C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */,
 				C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */,
 				C1CC5C1025BBDB18000D31B7 /* R.generated.swift in Sources */,
-				C1CC5C7E25BC2F91000D31B7 /* HomeScreenViewController+TableView.swift in Sources */,
 				C1CC5C4125BBF932000D31B7 /* Constants.swift in Sources */,
 				C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */,
 				C1CC5C4F25BBFBC2000D31B7 /* HomeScreenViewController.swift in Sources */,

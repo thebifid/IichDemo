@@ -22,6 +22,7 @@ class HomeScreenViewModel {
 
     // MARK: - Public Methods
 
+    /// CoreData
     func saveDesk(withBoardKey boardKey: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
         if checkDuplicate(boardKey: boardKey) {
             let error = NSError(domain: "", code: 100, userInfo: [NSLocalizedDescriptionKey: "Already in"])
@@ -57,6 +58,7 @@ class HomeScreenViewModel {
         }
     }
 
+    /// CoreData
     func fetchDesk() {
         let fetchRequest: NSFetchRequest<Desks> = Desks.fetchRequest()
 
@@ -70,6 +72,7 @@ class HomeScreenViewModel {
         }
     }
 
+    /// CoreData
     func deleteDesk(objectToDelete object: Desks) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -77,6 +80,7 @@ class HomeScreenViewModel {
         appDelegate.saveContext { _ in }
     }
 
+    /// API
     func requestBoards() {
         NetworkService.sharedInstance.requestAllBoards { [weak self] result in
             switch result {

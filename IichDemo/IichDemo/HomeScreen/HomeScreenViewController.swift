@@ -130,8 +130,11 @@ extension HomeScreenViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        print(viewModel.arrayOfAllBoards[indexPath.section][indexPath.row])
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let viewModelToSend = ThreadScreenViewModel(boardInfo: viewModel.arrayOfAllBoards[indexPath.section][indexPath.row])
+//      // let viewController = ThreadScreenViewController(viewModel: viewModelToSend)
+//        viewController.navigationItem.title = viewModelToSend.boardInfo.name
+//        navigationController?.pushViewController(viewController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

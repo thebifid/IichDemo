@@ -9,11 +9,10 @@ import CoreData
 import UIKit
 
 class HomeScreenViewModel {
-    
     // MARK: - Handlers
-    
-    var updateTableViewHandler: (() -> ())?
-    
+
+    var updateTableViewHandler: (() -> Void)?
+
     // MARK: - Private Properties
 
     // MARK: - Public Properties
@@ -23,21 +22,33 @@ class HomeScreenViewModel {
 
     // MARK: - Public Methods
 
-    func saveDesk(withTitle title: String) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-
-        guard let entity = NSEntityDescription.entity(forEntityName: "Desks", in: context) else { return }
-
-        let deskObject = Desks(entity: entity, insertInto: context)
-
-        deskObject.title = title
-        appDelegate.saveContext { [weak self] result in
+    func saveDesk(withBoardKey boardKey: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
+        requestBoardInfo(boardKey: boardKey) { result in
             switch result {
             case let .failure(error):
                 print(error.localizedDescription)
-            case .success:
-                self?.favBoards.insert(deskObject, at: self!.favBoards.count)
+                completion(.failure(error))
+            case let .success(boardInfo):
+
+                DispatchQueue.main.async {
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    let context = appDelegate.persistentContainer.viewContext
+
+                    guard let entity = NSEntityDescription.entity(forEntityName: "Desks", in: context) else { return }
+                    let deskObject = Desks(entity: entity, insertInto: context)
+                    deskObject.boardKey = boardInfo.Board
+                    deskObject.boardName = boardInfo.BoardName
+                    appDelegate.saveContext { [weak self] result in
+                        switch result {
+                        case let .failure(error):
+                            print(error.localizedDescription)
+                            completion(.failure(error))
+                        case .success:
+                            self?.favBoards.insert(deskObject, at: self!.favBoards.count)
+                            completion(.success(()))
+                        }
+                    }
+                }
             }
         }
     }
@@ -70,6 +81,21 @@ class HomeScreenViewModel {
             case let .success(boards):
                 self?.fetchedBoards = boards
                 self?.updateTableViewHandler?()
+            }
+        }
+    }
+
+    // MARK: - Private Methods
+
+    private func requestBoardInfo(boardKey: String, completion: @escaping ((Result<BoardInfo, Error>) -> Void)) {
+        NetworkService.sharedInstance.requestBoardInfo(boardKey: boardKey) { result in
+            switch result {
+            case let .failure(error):
+                print(error.localizedDescription)
+                completion(.failure(error))
+            case let .success(boardInfo):
+                print(boardInfo.Board, boardInfo.BoardName)
+                completion(.success(boardInfo))
             }
         }
     }

@@ -26,7 +26,7 @@ class HomeScreenViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // viewModel.requestBoards()
+        viewModel.requestBoards()
         setupNavigationBar()
         enableBinding()
 
@@ -64,8 +64,17 @@ class HomeScreenViewController: UITableViewController {
 
     @objc private func plusButtonTapped() {
         let alert = AlertAssist.alertWithInput(title: "Добавление доски", message: "Введите код доски") { [weak self] desk in
-            self?.viewModel.saveDesk(withTitle: desk)
-            self?.tableView.insertRows(at: [IndexPath(item: self!.viewModel.favBoards.count - 1, section: 0)], with: .fade)
+            self?.viewModel.saveDesk(withBoardKey: desk, completion: { result in
+                switch result {
+                case let .failure(error):
+                    print(error.localizedDescription)
+
+                case .success(()):
+                    DispatchQueue.main.async {
+                        self?.tableView.insertRows(at: [IndexPath(item: self!.viewModel.favBoards.count - 1, section: 0)], with: .fade)
+                    }
+                }
+            })
         }
         present(alert, animated: true, completion: nil)
     }

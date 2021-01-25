@@ -42,7 +42,8 @@ class NetworkService {
                     let boardInfo = try! JSONDecoder().decode(BoardInfo.self, from: data)
                     completion(.success(boardInfo))
                 }
-            }
+
+            }.resume()
         }
     }
 }

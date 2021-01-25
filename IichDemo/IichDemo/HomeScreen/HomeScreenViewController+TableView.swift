@@ -41,7 +41,7 @@ extension HomeScreenViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "id", for: indexPath) as! HomeScreenCell
         switch indexPath.section {
         case 0:
-            cell.deskLabel.text = viewModel.favBoards[indexPath.item].boardKey
+            cell.deskLabel.text = "/\(viewModel.favBoards[indexPath.item].boardKey ?? "")"
             cell.customTitleLabel.text = viewModel.favBoards[indexPath.item].boardName
         case 1:
             cell.deskLabel.text = "/\(viewModel.fetchedBoards.Взрослым[indexPath.item].id)"

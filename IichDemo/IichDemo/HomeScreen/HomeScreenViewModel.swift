@@ -23,10 +23,15 @@ class HomeScreenViewModel {
     // MARK: - Public Methods
 
     func saveDesk(withBoardKey boardKey: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
+        if checkDuplicate(boardKey: boardKey) {
+            let error = NSError(domain: "", code: 100, userInfo: [NSLocalizedDescriptionKey: "Already in"])
+            completion(.failure(error))
+            return
+        }
+
         requestBoardInfo(boardKey: boardKey) { result in
             switch result {
             case let .failure(error):
-                print(error.localizedDescription)
                 completion(.failure(error))
             case let .success(boardInfo):
 
@@ -41,7 +46,6 @@ class HomeScreenViewModel {
                     appDelegate.saveContext { [weak self] result in
                         switch result {
                         case let .failure(error):
-                            print(error.localizedDescription)
                             completion(.failure(error))
                         case .success:
                             self?.favBoards.insert(deskObject, at: self!.favBoards.count)
@@ -86,6 +90,16 @@ class HomeScreenViewModel {
     }
 
     // MARK: - Private Methods
+
+    private func checkDuplicate(boardKey: String) -> Bool {
+        var isDuplicated: Bool = false
+        favBoards.forEach { desk in
+            if desk.boardKey == boardKey {
+                isDuplicated = true
+            }
+        }
+        return isDuplicated
+    }
 
     private func requestBoardInfo(boardKey: String, completion: @escaping ((Result<BoardInfo, Error>) -> Void)) {
         NetworkService.sharedInstance.requestBoardInfo(boardKey: boardKey) { result in

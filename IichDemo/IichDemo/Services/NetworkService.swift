@@ -21,9 +21,12 @@ class NetworkService {
                 }
 
                 if let data = data {
-                    let boards = try! JSONDecoder().decode(Boards.self, from: data)
-
-                    completion(.success(boards))
+                    do {
+                        let boards = try JSONDecoder().decode(Boards.self, from: data)
+                        completion(.success(boards))
+                    } catch {
+                        completion(.failure(error))
+                    }
                 }
             }.resume()
         }
@@ -39,8 +42,12 @@ class NetworkService {
                 }
 
                 if let data = data {
-                    let boardInfo = try! JSONDecoder().decode(BoardInfo.self, from: data)
-                    completion(.success(boardInfo))
+                    do {
+                        let boardInfo = try JSONDecoder().decode(BoardInfo.self, from: data)
+                        completion(.success(boardInfo))
+                    } catch {
+                        completion(.failure(error))
+                    }
                 }
 
             }.resume()

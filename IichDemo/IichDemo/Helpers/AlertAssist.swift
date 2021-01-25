@@ -8,6 +8,13 @@
 import UIKit
 
 class AlertAssist {
+    static func alertWithOk(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        return alert
+    }
+
     static func alertWithInput(title: String, message: String, handler: @escaping (String) -> Void) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addTextField()

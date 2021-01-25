@@ -19,6 +19,7 @@ class HomeScreenViewModel {
 
     var favBoards: [Desks] = []
     var fetchedBoards: Boards = Boards()
+    var arrayOfAllBoards: [[BoardModel]] = [[]]
 
     // MARK: - Public Methods
 
@@ -81,14 +82,28 @@ class HomeScreenViewModel {
     }
 
     /// API
-    func requestBoards() {
+    func requestBoards(completion: @escaping ((Result<Void, Error>) -> Void)) {
         NetworkService.sharedInstance.requestAllBoards { [weak self] result in
+
+            guard let self = self else { return }
+
             switch result {
             case let .failure(error):
                 print("failed to load boards, \(error.localizedDescription)")
             case let .success(boards):
-                self?.fetchedBoards = boards
-                self?.updateTableViewHandler?()
+                self.fetchedBoards = boards
+
+                self.arrayOfAllBoards[0] = self.fromFavsToBoardModel(favBoards: self.favBoards)
+
+                self.arrayOfAllBoards.append(boards.Взрослым)
+                self.arrayOfAllBoards.append(boards.Игры)
+                self.arrayOfAllBoards.append(boards.Политика)
+                self.arrayOfAllBoards.append(boards.Пользовательские)
+                self.arrayOfAllBoards.append(boards.Разное)
+                self.arrayOfAllBoards.append(boards.Творчество)
+                self.arrayOfAllBoards.append(boards.Тематика)
+
+                self.updateTableViewHandler?()
             }
         }
     }
@@ -109,12 +124,20 @@ class HomeScreenViewModel {
         NetworkService.sharedInstance.requestBoardInfo(boardKey: boardKey) { result in
             switch result {
             case let .failure(error):
-                print(error.localizedDescription)
                 completion(.failure(error))
             case let .success(boardInfo):
-                print(boardInfo.Board, boardInfo.BoardName)
                 completion(.success(boardInfo))
             }
         }
+    }
+
+    private func fromFavsToBoardModel(favBoards: [Desks]) -> [BoardModel] {
+        var boardModel: [BoardModel] = []
+
+        favBoards.forEach { desk in
+            boardModel.append(BoardModel(category: "Избранное", name: desk.boardName!, id: desk.boardKey!))
+        }
+
+        return boardModel
     }
 }

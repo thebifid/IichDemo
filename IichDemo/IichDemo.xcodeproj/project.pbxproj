@@ -12,6 +12,7 @@
 		C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */; };
 		C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA925BD70EB00AD8DE2 /* Boards.swift */; };
 		C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */; };
+		C14D4ED725BE9F2000AD8DE2 /* ThreadScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4ED625BE9F2000AD8DE2 /* ThreadScreenViewController.swift */; };
 		C1AA8DC2E69743FA1136253E /* Pods_IichDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A53C6403386A5A0CA2BFD29 /* Pods_IichDemoTests.framework */; };
 		C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */; };
 		C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5B1325BBC834000D31B7 /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14D4EA925BD70EB00AD8DE2 /* Boards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boards.swift; sourceTree = "<group>"; };
 		C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfo.swift; sourceTree = "<group>"; };
+		C14D4ED625BE9F2000AD8DE2 /* ThreadScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadScreenViewController.swift; sourceTree = "<group>"; };
 		C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCell.swift; sourceTree = "<group>"; };
 		C1CC5B1025BBC834000D31B7 /* IichDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IichDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CC5B1325BBC834000D31B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C14D4ED225BE9E7A00AD8DE2 /* ThreadScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C14D4ED625BE9F2000AD8DE2 /* ThreadScreenViewController.swift */,
+			);
+			path = ThreadScreen;
+			sourceTree = "<group>";
+		};
 		C1CC5B0725BBC834000D31B7 = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +170,7 @@
 				C14D4EB425BDA36400AD8DE2 /* Models */,
 				C14D4EA325BD689200AD8DE2 /* Services */,
 				C1CC5C3F25BBF92A000D31B7 /* Helpers */,
+				C14D4ED225BE9E7A00AD8DE2 /* ThreadScreen */,
 				C1CC5BEF25BBD85E000D31B7 /* HomeScreen */,
 				C1CC5BEB25BBD81F000D31B7 /* Resources */,
 				C1CC5BE725BBD6E7000D31B7 /* Commons */,
@@ -530,6 +541,7 @@
 				C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */,
 				C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */,
 				C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */,
+				C14D4ED725BE9F2000AD8DE2 /* ThreadScreenViewController.swift in Sources */,
 				C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */,
 				C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */,
 				C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */,

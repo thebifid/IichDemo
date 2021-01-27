@@ -11,19 +11,31 @@ import UIKit
 class ThreadScreenViewController: UIViewController {
     // MARK: - Private Properties
 
-    // private var viewModel: ThreadScreenViewModel
+    private var viewModel: ThreadScreenViewModel = ThreadScreenViewModel()
 
     // MARK: - UI Controls
+
+    var myCollectionView: UICollectionView?
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        enableBinding()
+        viewModel.requestThreads(withBoardKey: "es") { _ in }
         setupCollectionView()
     }
 
     // MARK: - Private Methods
+
+    private func enableBinding() {
+        viewModel.didUpdateModel = { [weak self] in
+            DispatchQueue.main.async {
+                self?.myCollectionView?.reloadData()
+            }
+        }
+    }
 
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
@@ -31,6 +43,7 @@ class ThreadScreenViewController: UIViewController {
         layout.sectionInset = .init(top: 20, left: 5, bottom: 20, right: 5)
 
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        myCollectionView = collectionView
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -63,15 +76,19 @@ class ThreadScreenViewController: UIViewController {
 
 extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        return viewModel.boardList.threads.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: Constants.deviceWidth / 2 - 10, height: 300)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ThreadCell
+
+        cell.threadSubjLabel.text = viewModel.boardList.threads[0].posts[0].comment
+
         return cell
     }
 }

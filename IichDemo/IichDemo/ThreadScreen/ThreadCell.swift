@@ -19,53 +19,74 @@ class ThreadCell: UICollectionViewCell {
 
     let firstImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .black
-        iv.contentMode = .scaleAspectFit
+        // iv.backgroundColor = .black
+        iv.contentMode = .scaleToFill
         iv.image = R.image.appleTest()
         return iv
     }()
 
     let secondImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .black
-        iv.contentMode = .scaleAspectFit
+        // iv.backgroundColor = .black
+        iv.contentMode = .scaleToFill
         iv.image = R.image.flowers()
         return iv
     }()
 
     let thirdImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .black
-        iv.contentMode = .scaleAspectFit
+        // iv.backgroundColor = .black
+        iv.contentMode = .scaleToFill
         iv.image = R.image.moto()
         return iv
     }()
 
     let fourthImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .black
-        iv.contentMode = .scaleAspectFit
+        // iv.backgroundColor = .black
+        iv.contentMode = .scaleToFill
         iv.image = R.image.space()
         return iv
     }()
 
-    let threadMessageLabel: UILabel = {
+    let threadAttachmentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = R.color.background()
+        return view
+    }()
+
+    let numberOfPostsLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .boldSystemFont(ofSize: 12)
+        label.text = "Постов: 137"
+        return label
+    }()
+
+    let numberOfFilesLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .boldSystemFont(ofSize: 12)
+        label.text = "Файлов: 90"
+        return label
+    }()
+
+    let threadSubjLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .white
-        label.text = """
-        Аноны, расскажите как вы выучили английский? Какой у вас уровень знания языка, как дошли до этого. У меня мечта знать инглиш на уровне B1-B2, но я едва ли единичные слова понимаю на слух.
-        Вообще, похоже у меня какой-то кретинизм на этой теме, никогда языки хорошо не шли.
-        """
-
+        label.font = .boldSystemFont(ofSize: 14)
+        label.text = "Thread first Message placeHolder"
         return label
     }()
 
     // MARK: - UI Actions
 
     private func setupUI() {
-        backgroundColor = .orange
-        layer.cornerRadius = 15
+        backgroundColor = R.color.moredark()
+        layer.cornerRadius = 5
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor.black.cgColor
 
         addSubview(headerForThreadImages)
         clipsToBounds = true
@@ -86,12 +107,29 @@ class ThreadCell: UICollectionViewCell {
             imagesStackView.edges == imagesStackView.superview!.edges
         }
 
-        addSubview(threadMessageLabel)
-        constrain(threadMessageLabel, headerForThreadImages) { threadMessageLabel, header in
-            threadMessageLabel.left == threadMessageLabel.superview!.left + 10
-            threadMessageLabel.right == threadMessageLabel.superview!.right - 10
-            threadMessageLabel.top == header.bottom
-            threadMessageLabel.bottom == threadMessageLabel.superview!.bottom - 10
+        addSubview(threadAttachmentView)
+        constrain(threadAttachmentView, headerForThreadImages) { threadAttachmentView, headerForThreadImages in
+            threadAttachmentView.top == headerForThreadImages.bottom
+            threadAttachmentView.left == threadAttachmentView.superview!.left
+            threadAttachmentView.right == threadAttachmentView.superview!.right
+            threadAttachmentView.height == 25
+        }
+
+        threadAttachmentView.addSubview(numberOfPostsLabel)
+        threadAttachmentView.addSubview(numberOfFilesLabel)
+        constrain(numberOfPostsLabel, numberOfFilesLabel) { numberOfPostsLabel, numberOfFilesLabel in
+            numberOfPostsLabel.left == numberOfPostsLabel.superview!.left + 10
+            numberOfPostsLabel.centerY == numberOfPostsLabel.superview!.centerY
+
+            numberOfFilesLabel.left == numberOfPostsLabel.right + 10
+            numberOfFilesLabel.centerY == numberOfPostsLabel.centerY
+        }
+
+        addSubview(threadSubjLabel)
+        constrain(threadSubjLabel, threadAttachmentView) { threadSubjLabel, threadAttachmentView in
+            threadSubjLabel.left == threadSubjLabel.superview!.left + 10
+            threadSubjLabel.right == threadSubjLabel.superview!.right - 10
+            threadSubjLabel.top == threadAttachmentView.bottom
         }
     }
 

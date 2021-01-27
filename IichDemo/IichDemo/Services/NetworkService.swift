@@ -32,7 +32,7 @@ class NetworkService {
         }
     }
 
-    func requestBoardInfo(boardKey: String, completion: @escaping (Result<BoardInfo, Error>) -> Void) {
+    func requestBoardInfo(boardKey: String, completion: @escaping (Result<BoardListModel, Error>) -> Void) {
         if let url = URL(string: "https://2ch.hk/\(boardKey)/index.json") {
             URLSession.shared.dataTask(with: url) { data, _, error in
 
@@ -43,7 +43,7 @@ class NetworkService {
 
                 if let data = data {
                     do {
-                        let boardInfo = try JSONDecoder().decode(BoardInfo.self, from: data)
+                        let boardInfo = try JSONDecoder().decode(BoardListModel.self, from: data)
                         completion(.success(boardInfo))
                     } catch {
                         completion(.failure(error))

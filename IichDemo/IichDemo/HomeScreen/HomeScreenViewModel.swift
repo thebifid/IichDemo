@@ -15,6 +15,8 @@ class HomeScreenViewModel {
 
     // MARK: - Private Properties
 
+    // private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     // MARK: - Public Properties
 
     var favBoards: [Desks] = []
@@ -120,7 +122,7 @@ class HomeScreenViewModel {
         return isDuplicated
     }
 
-    private func requestBoardInfo(boardKey: String, completion: @escaping ((Result<BoardInfo, Error>) -> Void)) {
+    private func requestBoardInfo(boardKey: String, completion: @escaping ((Result<BoardListModel, Error>) -> Void)) {
         NetworkService.sharedInstance.requestBoardInfo(boardKey: boardKey) { result in
             switch result {
             case let .failure(error):

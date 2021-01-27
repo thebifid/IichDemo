@@ -12,7 +12,7 @@ import UIKit
 class HomeScreenViewController: UITableViewController {
     // MARK: - Private Properties
 
-    private let viewModel = HomeScreenViewModel() // Не приватный
+    private let viewModel = HomeScreenViewModel()
 
     // MARK: - UI Controls
 

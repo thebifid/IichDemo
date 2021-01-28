@@ -33,6 +33,12 @@ class ThreadScreenViewModel {
         }
     }
 
+    func formCellModel(index: Int) -> ThreadCellModel {
+        let data = boardList.threads[index].posts[0]
+        return ThreadCellModel(countFiles: data.files_count ?? 0,
+                               countPosts: data.posts_count ?? 0, subject: data.subject, comment: data.comment, files: data.files)
+    }
+
     // MARK: - Init
 
     //    init(boardInfo: BoardModel) {

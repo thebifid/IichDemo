@@ -6,10 +6,12 @@ target 'IichDemo' do
   use_frameworks!
 
   # Pods for IichDemo
+    pod "Atributika"
     pod 'Cartography', '~> 3.0'
     pod 'SwiftLint'
     pod 'SwiftFormat/CLI'
     pod 'R.swift'
+    pod 'SDWebImage', '~> 5.0'
 
 
   target 'IichDemoTests' do

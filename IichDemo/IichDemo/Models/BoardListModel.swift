@@ -40,22 +40,22 @@ struct Posts: Decodable {
     let op: Int
     let parent: String
     let posts_count: Int?
-
+    let files_count: Int?
     let sticky: Int
     let subject: String
     let timestamp: Int
 }
 
 struct Files: Decodable {
-    let displayname: String
-    let fullname: String
-    let height: Int
-    let name: String
-    let nsfw: Int
-    let path: String
-    let size: Int
-    let thumbnail: String
-    let tn_height: Int
-    let tn_width: Int
-    let width: Int
+    let displayname: String?
+    let fullname: String?
+    let height: Int?
+    let name: String?
+    let nsfw: Int?
+    let path: String?
+    let size: Int?
+    let thumbnail: String?
+    let tn_height: Int?
+    let tn_width: Int?
+    let width: Int?
 }

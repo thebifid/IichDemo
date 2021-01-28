@@ -5,7 +5,9 @@
 //  Created by Vasiliy Matveev on 25.01.2021.
 //
 
+import Atributika
 import Cartography
+import SDWebImage
 import UIKit
 
 class ThreadCell: UICollectionViewCell {
@@ -19,33 +21,25 @@ class ThreadCell: UICollectionViewCell {
 
     let firstImageView: UIImageView = {
         let iv = UIImageView()
-        // iv.backgroundColor = .black
         iv.contentMode = .scaleToFill
-        iv.image = R.image.appleTest()
         return iv
     }()
 
     let secondImageView: UIImageView = {
         let iv = UIImageView()
-        // iv.backgroundColor = .black
         iv.contentMode = .scaleToFill
-        iv.image = R.image.flowers()
         return iv
     }()
 
     let thirdImageView: UIImageView = {
         let iv = UIImageView()
-        // iv.backgroundColor = .black
         iv.contentMode = .scaleToFill
-        iv.image = R.image.moto()
         return iv
     }()
 
     let fourthImageView: UIImageView = {
         let iv = UIImageView()
-        // iv.backgroundColor = .black
         iv.contentMode = .scaleToFill
-        iv.image = R.image.space()
         return iv
     }()
 
@@ -71,14 +65,57 @@ class ThreadCell: UICollectionViewCell {
         return label
     }()
 
-    let threadSubjLabel: UILabel = {
-        let label = UILabel()
+    let threadSubjLabel: AttributedLabel = {
+        let label = AttributedLabel()
         label.numberOfLines = 0
         label.textColor = .white
         label.font = .boldSystemFont(ofSize: 14)
-        label.text = "Thread first Message placeHolder"
+        let all = Style.font(.systemFont(ofSize: 20))
+        label.attributedText = "Thread first Message placeHolder".style(tags: all)
         return label
     }()
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        firstImageView.image = nil
+        secondImageView.image = nil
+        thirdImageView.image = nil
+        fourthImageView.image = nil
+    }
+
+    // MARK: - Public Methods
+
+    func setupCell(withCellModel model: ThreadCellModel) {
+        numberOfPostsLabel.text = "Постов: \(model.countPosts)"
+        numberOfFilesLabel.text = "Файлов: \(model.countFiles)"
+        let string = "\(model.comment)"
+
+        let link = Style("a")
+            .foregroundColor(.orange, .normal)
+
+        threadSubjLabel.attributedText = string.style(tags: link)
+
+        // images set
+        if !model.files.isEmpty {
+            let url = URL(string: "https://2ch.hk\(model.files[0].thumbnail!)")
+            firstImageView.sd_setImage(with: url, completed: nil)
+
+            if model.files.count > 1 {
+                let url = URL(string: "https://2ch.hk\(model.files[1].thumbnail!)")
+                secondImageView.sd_setImage(with: url, completed: nil)
+
+                if model.files.count > 2 {
+                    let url = URL(string: "https://2ch.hk\(model.files[2].thumbnail!)")
+                    thirdImageView.sd_setImage(with: url, completed: nil)
+
+                    if model.files.count > 3 {
+                        let url = URL(string: "https://2ch.hk\(model.files[3].thumbnail!)")
+                        fourthImageView.sd_setImage(with: url, completed: nil)
+                    }
+                }
+            }
+        }
+    }
 
     // MARK: - UI Actions
 

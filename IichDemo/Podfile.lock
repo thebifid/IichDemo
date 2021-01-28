@@ -1,32 +1,42 @@
 PODS:
+  - Atributika (4.9.10)
   - Cartography (3.1.0)
   - R.swift (5.2.2):
     - R.swift.Library (~> 5.2.0)
   - R.swift.Library (5.2.0)
+  - SDWebImage (5.8.1):
+    - SDWebImage/Core (= 5.8.1)
+  - SDWebImage/Core (5.8.1)
   - SwiftFormat/CLI (0.44.17)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
+  - Atributika
   - Cartography (~> 3.0)
   - R.swift
+  - SDWebImage (~> 5.0)
   - SwiftFormat/CLI
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Atributika
     - Cartography
     - R.swift
     - R.swift.Library
+    - SDWebImage
     - SwiftFormat
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Atributika: cf87f95f1d31d9cdb9af611a2b4e00672e9ae195
   Cartography: 1988b7578871a56c036e7af17195cb2190edf18c
   R.swift: 7c52cdc57a66840ffe6cbd8a823d732059d42a32
   R.swift.Library: 5ba4f1631300caf9a4d890186930da85d540769d
+  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   SwiftFormat: 3b5caa6389b2b9adbc00e133b3ccc8c6e687a6a4
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: ef1eb095f7a7d35cb91d1f7ad2a7050ca66344a0
+PODFILE CHECKSUM: 08816c739a3fbc77f94de924062641b0bb567c05
 
 COCOAPODS: 1.9.3

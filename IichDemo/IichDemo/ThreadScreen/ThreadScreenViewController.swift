@@ -23,7 +23,7 @@ class ThreadScreenViewController: UIViewController {
         super.viewDidLoad()
 
         enableBinding()
-        viewModel.requestThreads(withBoardKey: "es") { _ in }
+        viewModel.requestThreads(withBoardKey: "b") { _ in }
         setupCollectionView()
     }
 
@@ -81,14 +81,12 @@ extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: Constants.deviceWidth / 2 - 10, height: 300)
+        return .init(width: Constants.deviceWidth / 2 - 10, height: 200)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ThreadCell
-
-        cell.threadSubjLabel.text = viewModel.boardList.threads[0].posts[0].comment
-
+        cell.setupCell(withCellModel: viewModel.formCellModel(index: indexPath.item))
         return cell
     }
 }

@@ -18,6 +18,7 @@
 		C1758C8A25C14AD7005FDE6F /* BoardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1758C8925C14AD7005FDE6F /* BoardListModel.swift */; };
 		C1AA8DC2E69743FA1136253E /* Pods_IichDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A53C6403386A5A0CA2BFD29 /* Pods_IichDemoTests.framework */; };
 		C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */; };
+		C1C0BB6025C2C50000E208FB /* ThreadCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C0BB5F25C2C50000E208FB /* ThreadCellModel.swift */; };
 		C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5B1325BBC834000D31B7 /* AppDelegate.swift */; };
 		C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5B1525BBC834000D31B7 /* SceneDelegate.swift */; };
 		C1CC5B1D25BBC834000D31B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1CC5B1C25BBC834000D31B7 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		C1564EAF25BEC4DA00EAB937 /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		C1758C8925C14AD7005FDE6F /* BoardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListModel.swift; sourceTree = "<group>"; };
 		C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCell.swift; sourceTree = "<group>"; };
+		C1C0BB5F25C2C50000E208FB /* ThreadCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCellModel.swift; sourceTree = "<group>"; };
 		C1CC5B1025BBC834000D31B7 /* IichDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IichDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CC5B1325BBC834000D31B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1CC5B1525BBC834000D31B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				C14D4EA925BD70EB00AD8DE2 /* Boards.swift */,
 				C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */,
 				C1758C8925C14AD7005FDE6F /* BoardListModel.swift */,
+				C1C0BB5F25C2C50000E208FB /* ThreadCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 			files = (
 				C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */,
 				C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */,
+				C1C0BB6025C2C50000E208FB /* ThreadCellModel.swift in Sources */,
 				C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */,
 				C14D4ED725BE9F2000AD8DE2 /* ThreadScreenViewController.swift in Sources */,
 				C1758C8A25C14AD7005FDE6F /* BoardListModel.swift in Sources */,

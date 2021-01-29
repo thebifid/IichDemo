@@ -13,4 +13,5 @@ struct ThreadCellModel {
     let subject: String
     let comment: String
     let files: [Files]
+    let boardKey: String
 }

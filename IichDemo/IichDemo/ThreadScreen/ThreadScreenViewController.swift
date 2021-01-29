@@ -80,7 +80,7 @@ extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: Constants.deviceWidth / 2 - 10, height: 200)
+        return .init(width: Constants.deviceWidth / 2 - 10, height: 300)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

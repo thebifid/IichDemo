@@ -21,25 +21,7 @@ class ThreadCell: UICollectionViewCell {
 
     let firstImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleToFill
-        return iv
-    }()
-
-    let secondImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleToFill
-        return iv
-    }()
-
-    let thirdImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleToFill
-        return iv
-    }()
-
-    let fourthImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleToFill
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
 
@@ -65,7 +47,15 @@ class ThreadCell: UICollectionViewCell {
         return label
     }()
 
-    let threadSubjLabel: AttributedLabel = {
+    let threadSubjectLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .white
+        label.font = .boldSystemFont(ofSize: 14)
+        return label
+    }()
+
+    let threadCommentLabel: AttributedLabel = {
         let label = AttributedLabel()
         label.numberOfLines = 0
         label.textColor = .white
@@ -75,17 +65,27 @@ class ThreadCell: UICollectionViewCell {
         return label
     }()
 
+    enum CellCategory {
+        case withSubject, noSubject
+    }
+
+    var cellCategory: CellCategory = .withSubject
+
     override func prepareForReuse() {
         super.prepareForReuse()
         firstImageView.image = nil
-        secondImageView.image = nil
-        thirdImageView.image = nil
-        fourthImageView.image = nil
     }
 
     // MARK: - Public Methods
 
     func setupCell(withCellModel model: ThreadCellModel) {
+        if model.boardKey == "b" {
+            cellCategory = .noSubject
+        } else {
+            threadSubjectLabel.text = model.subject
+        }
+
+        setupUI()
         numberOfPostsLabel.text = "Постов: \(model.countPosts)"
         numberOfFilesLabel.text = "Файлов: \(model.countFiles)"
         let string = "\(model.comment)"
@@ -93,31 +93,18 @@ class ThreadCell: UICollectionViewCell {
         let link = Style("a")
             .foregroundColor(.orange, .normal)
 
-        threadSubjLabel.attributedText = string.style(tags: link)
+        threadCommentLabel.attributedText = string.style(tags: link)
 
         // images set
         if !model.files.isEmpty {
             let url = URL(string: "https://2ch.hk\(model.files[0].thumbnail!)")
             firstImageView.sd_setImage(with: url, completed: nil)
-
-            if model.files.count > 1 {
-                let url = URL(string: "https://2ch.hk\(model.files[1].thumbnail!)")
-                secondImageView.sd_setImage(with: url, completed: nil)
-
-                if model.files.count > 2 {
-                    let url = URL(string: "https://2ch.hk\(model.files[2].thumbnail!)")
-                    thirdImageView.sd_setImage(with: url, completed: nil)
-
-                    if model.files.count > 3 {
-                        let url = URL(string: "https://2ch.hk\(model.files[3].thumbnail!)")
-                        fourthImageView.sd_setImage(with: url, completed: nil)
-                    }
-                }
-            }
         }
     }
 
     // MARK: - UI Actions
+
+    let group = ConstraintGroup()
 
     private func setupUI() {
         backgroundColor = R.color.moredark()
@@ -132,50 +119,69 @@ class ThreadCell: UICollectionViewCell {
             header.top == header.superview!.top
             header.left == header.superview!.left
             header.right == header.superview!.right
-            header.height == 40
+            header.height == 120
         }
 
-        let imagesStackView = UIStackView(arrangedSubviews: [firstImageView, secondImageView, thirdImageView, fourthImageView])
-        imagesStackView.spacing = 2
-        imagesStackView.distribution = .fillEqually
-
-        headerForThreadImages.addSubview(imagesStackView)
-        constrain(imagesStackView) { imagesStackView in
-            imagesStackView.edges == imagesStackView.superview!.edges
+        headerForThreadImages.addSubview(firstImageView)
+        constrain(firstImageView) { firstImageView in
+            firstImageView.edges == firstImageView.superview!.edges
         }
 
         addSubview(threadAttachmentView)
-        constrain(threadAttachmentView, headerForThreadImages) { threadAttachmentView, headerForThreadImages in
+        constrain(threadAttachmentView, headerForThreadImages, replace: group) { threadAttachmentView, headerForThreadImages in
             threadAttachmentView.top == headerForThreadImages.bottom
             threadAttachmentView.left == threadAttachmentView.superview!.left
             threadAttachmentView.right == threadAttachmentView.superview!.right
-            threadAttachmentView.height == 25
+
+            if cellCategory == .noSubject {
+                threadAttachmentView.height == 20
+            } else {
+                threadAttachmentView.height == 20 + (threadSubjectLabel.text?.height(constraintedWidth:
+                    Constants.deviceWidth / 2 - 35) ?? 0)
+            }
         }
 
-        threadAttachmentView.addSubview(numberOfPostsLabel)
-        threadAttachmentView.addSubview(numberOfFilesLabel)
-        constrain(numberOfPostsLabel, numberOfFilesLabel) { numberOfPostsLabel, numberOfFilesLabel in
-            numberOfPostsLabel.left == numberOfPostsLabel.superview!.left + 10
-            numberOfPostsLabel.centerY == numberOfPostsLabel.superview!.centerY
+        let stackView = UIStackView(arrangedSubviews: [numberOfPostsLabel, numberOfFilesLabel])
 
-            numberOfFilesLabel.left == numberOfPostsLabel.right + 10
-            numberOfFilesLabel.centerY == numberOfPostsLabel.centerY
+        stackView.spacing = 0
+        stackView.distribution = .equalCentering
+
+        let verticalStackView = UIStackView(arrangedSubviews: [stackView, threadSubjectLabel])
+        verticalStackView.axis = .vertical
+
+        threadAttachmentView.addSubview(verticalStackView)
+        constrain(verticalStackView) { stackView in
+            stackView.left == stackView.superview!.left + 10
+            stackView.right == stackView.superview!.right - 10
+            stackView.top == stackView.superview!.top + 5
         }
 
-        addSubview(threadSubjLabel)
-        constrain(threadSubjLabel, threadAttachmentView) { threadSubjLabel, threadAttachmentView in
-            threadSubjLabel.left == threadSubjLabel.superview!.left + 10
-            threadSubjLabel.right == threadSubjLabel.superview!.right - 10
-            threadSubjLabel.top == threadAttachmentView.bottom
+        addSubview(threadCommentLabel)
+        constrain(threadCommentLabel, threadAttachmentView) { threadCommentLabel, threadAttachmentView in
+            threadCommentLabel.left == threadCommentLabel.superview!.left + 10
+            threadCommentLabel.right == threadCommentLabel.superview!.right - 10
+            threadCommentLabel.top == threadAttachmentView.bottom + 5
+            threadCommentLabel.bottom == threadCommentLabel.superview!.bottom - 5
         }
+        threadCommentLabel.sizeToFit()
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension String {
+    func height(constraintedWidth width: CGFloat, font: UIFont = .systemFont(ofSize: 14)) -> CGFloat {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.text = self
+        label.font = font
+        label.sizeToFit()
+        return label.frame.height
     }
 }

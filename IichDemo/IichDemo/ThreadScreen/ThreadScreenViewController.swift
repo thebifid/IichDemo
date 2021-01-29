@@ -11,7 +11,7 @@ import UIKit
 class ThreadScreenViewController: UIViewController {
     // MARK: - Private Properties
 
-    private var viewModel: ThreadScreenViewModel = ThreadScreenViewModel()
+    private var viewModel: ThreadScreenViewModel
 
     // MARK: - UI Controls
 
@@ -23,7 +23,7 @@ class ThreadScreenViewController: UIViewController {
         super.viewDidLoad()
 
         enableBinding()
-        viewModel.requestThreads(withBoardKey: "b") { _ in }
+        viewModel.requestThreads(withBoardKey: viewModel.boardInfo.id) { _ in }
         setupCollectionView()
     }
 
@@ -63,15 +63,14 @@ class ThreadScreenViewController: UIViewController {
 
     // MARK: - Init
 
-    //
-    //    init(viewModel: ThreadScreenViewModel) {
-    //       // self.viewModel = viewModel
-    //        super.init(nibName: nil, bundle: nil)
-    //    }
-    //
-    //    required init?(coder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
+    init(viewModel: ThreadScreenViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

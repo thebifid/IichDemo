@@ -119,6 +119,9 @@ extension HomeScreenViewController {
         if viewModel.arrayOfAllBoards.isEmpty {
             return 0
         }
+        if section == 0 {
+            return viewModel.arrayOfAllBoards[0].count
+        }
         return min(3, viewModel.arrayOfAllBoards[section].count)
     }
 
@@ -130,11 +133,11 @@ extension HomeScreenViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let viewModelToSend = ThreadScreenViewModel(boardInfo: viewModel.arrayOfAllBoards[indexPath.section][indexPath.row])
-//      // let viewController = ThreadScreenViewController(viewModel: viewModelToSend)
-//        viewController.navigationItem.title = viewModelToSend.boardInfo.name
-//        navigationController?.pushViewController(viewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        let viewModelToSend = ThreadScreenViewModel(boardInfo: viewModel.arrayOfAllBoards[indexPath.section][indexPath.row])
+        let viewController = ThreadScreenViewController(viewModel: viewModelToSend)
+        viewController.navigationItem.title = viewModelToSend.boardInfo.name
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -157,9 +160,15 @@ extension HomeScreenViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let deleteObject = viewModel.favBoards[indexPath.item]
-            viewModel.deleteDesk(objectToDelete: deleteObject)
-            viewModel.favBoards.remove(at: indexPath.item)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            viewModel.deleteDesk(objectToDelete: deleteObject, indexLocalModel: indexPath.item) { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    let alert = AlertAssist.alertWithOk(title: "Error", message: error.localizedDescription)
+                    self?.present(alert, animated: true, completion: nil)
+                case .success:
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
         }
     }
 

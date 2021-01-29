@@ -8,15 +8,16 @@
 import Foundation
 
 class ThreadScreenViewModel {
+    // MARK: - Private Properties
+
     // MARK: - Public Properties
 
+    let boardInfo: BoardModel
     var boardList: BoardListModel = BoardListModel()
 
     // MARK: - Handlers
 
     var didUpdateModel: (() -> Void)?
-
-    // MARK: - Private Properties
 
     // MARK: - Public Methods
 
@@ -41,7 +42,7 @@ class ThreadScreenViewModel {
 
     // MARK: - Init
 
-    //    init(boardInfo: BoardModel) {
-    //        self.boardInfo = boardInfo
-    //    }
+    init(boardInfo: BoardModel) {
+        self.boardInfo = boardInfo
+    }
 }

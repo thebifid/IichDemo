@@ -48,11 +48,13 @@ class HomeScreenViewModel {
                     deskObject.boardKey = boardInfo.Board
                     deskObject.boardName = boardInfo.BoardName
                     appDelegate.saveContext { [weak self] result in
+                        guard let self = self else { return }
                         switch result {
                         case let .failure(error):
                             completion(.failure(error))
                         case .success:
-                            self?.favBoards.insert(deskObject, at: self!.favBoards.count)
+                            self.favBoards.insert(deskObject, at: self.favBoards.count)
+                            self.arrayOfAllBoards[0] = self.fromFavsToBoardModel(favBoards: self.favBoards)
                             completion(.success(()))
                         }
                     }
@@ -76,11 +78,22 @@ class HomeScreenViewModel {
     }
 
     /// CoreData
-    func deleteDesk(objectToDelete object: Desks) {
+    func deleteDesk(objectToDelete object: Desks, indexLocalModel index: Int, completion: @escaping ((Result<Void, Error>) -> Void)) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         context.delete(object)
-        appDelegate.saveContext { _ in }
+        appDelegate.saveContext { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case let .failure(error):
+                completion(.failure(error))
+
+            case .success:
+                self.favBoards.remove(at: index)
+                self.arrayOfAllBoards[0] = self.fromFavsToBoardModel(favBoards: self.favBoards)
+                completion(.success(()))
+            }
+        }
     }
 
     /// API

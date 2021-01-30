@@ -161,7 +161,7 @@ class ThreadCell: UICollectionViewCell {
             threadCommentLabel.left == threadCommentLabel.superview!.left + 10
             threadCommentLabel.right == threadCommentLabel.superview!.right - 10
             threadCommentLabel.top == threadAttachmentView.bottom + 5
-            threadCommentLabel.bottom == threadCommentLabel.superview!.bottom - 5
+            threadCommentLabel.bottom == threadCommentLabel.superview!.bottom
         }
         threadCommentLabel.sizeToFit()
     }

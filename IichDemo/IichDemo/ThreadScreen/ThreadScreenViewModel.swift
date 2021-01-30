@@ -14,6 +14,7 @@ class ThreadScreenViewModel {
 
     let boardInfo: BoardModel
     var boardList: BoardListModel = BoardListModel()
+    var currentPage: Int = 0
 
     // MARK: - Handlers
 
@@ -21,13 +22,14 @@ class ThreadScreenViewModel {
 
     // MARK: - Public Methods
 
-    func requestThreads(withBoardKey boardKey: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
-        NetworkService.sharedInstance.requestBoardInfo(boardKey: boardKey) { [weak self] result in
+    func requestThreads(completion: @escaping ((Result<Void, Error>) -> Void)) {
+        NetworkService.sharedInstance.requestBoardInfo(boardKey: boardInfo.id, pageNumber: currentPage) { [weak self] result in
             switch result {
             case let .failure(error):
                 completion(.failure(error))
             case let .success(boardList):
-                self?.boardList = boardList
+                self?.boardList.threads.append(contentsOf: boardList.threads)
+                self?.currentPage += 1
                 self?.didUpdateModel?()
                 completion(.success(()))
             }
@@ -45,5 +47,7 @@ class ThreadScreenViewModel {
 
     init(boardInfo: BoardModel) {
         self.boardInfo = boardInfo
+        boardList.Board = boardInfo.id
+        boardList.BoardName = boardInfo.name
     }
 }

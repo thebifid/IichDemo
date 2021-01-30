@@ -23,7 +23,7 @@ class ThreadScreenViewController: UIViewController {
         super.viewDidLoad()
 
         enableBinding()
-        viewModel.requestThreads(withBoardKey: viewModel.boardInfo.id) { _ in }
+        viewModel.requestThreads { _ in }
         setupCollectionView()
     }
 
@@ -49,6 +49,8 @@ class ThreadScreenViewController: UIViewController {
         collectionView.delegate = self
 
         collectionView.register(ThreadCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView.register(ThreadFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: "footerId")
 
         view.addSubview(collectionView)
         constrain(collectionView) { collectionView in
@@ -87,5 +89,37 @@ extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ThreadCell
         cell.setupCell(withCellModel: viewModel.formCellModel(index: indexPath.item))
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerId",
+                                                                             for: indexPath) as! ThreadFooterView
+            return footerView
+        default:
+            assert(false, "Invalid element type")
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForFooterInSection section: Int) -> CGSize {
+        return .init(width: Constants.deviceWidth, height: 50)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == viewModel.boardList.threads.count - 1 {
+            viewModel.requestThreads { result in
+                switch result {
+                case let .failure(error):
+                    print(error.localizedDescription)
+                case .success:
+                    DispatchQueue.main.async {
+                        self.myCollectionView!.reloadData()
+                    }
+                }
+            }
+        }
     }
 }

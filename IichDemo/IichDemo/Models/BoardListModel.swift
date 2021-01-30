@@ -8,9 +8,9 @@
 import Foundation
 
 struct BoardListModel: Decodable {
-    let Board: String
-    let BoardName: String
-    let threads: [Thread]
+    var Board: String
+    var BoardName: String
+    var threads: [Thread]
 
     init() {
         Board = ""

@@ -32,8 +32,14 @@ class NetworkService {
         }
     }
 
-    func requestBoardInfo(boardKey: String, completion: @escaping (Result<BoardListModel, Error>) -> Void) {
-        if let url = URL(string: "https://2ch.hk/\(boardKey)/index.json") {
+    func requestBoardInfo(boardKey: String, pageNumber: Int = 0, completion: @escaping (Result<BoardListModel, Error>) -> Void) {
+        var page: Any = "index"
+
+        if pageNumber != 0 {
+            page = pageNumber
+        }
+
+        if let url = URL(string: "https://2ch.hk/\(boardKey)/\(page).json") {
             URLSession.shared.dataTask(with: url) { data, _, error in
 
                 if error != nil {

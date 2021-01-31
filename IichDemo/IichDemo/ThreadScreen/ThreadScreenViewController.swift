@@ -28,10 +28,6 @@ class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
         setupSearchBar()
     }
 
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-    }
-
     // MARK: - Private Methods
 
     private func enableBinding() {
@@ -72,6 +68,7 @@ class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
         customSearchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = customSearchController
         customSearchController.searchBar.delegate = self
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     // MARK: - UI Actions
@@ -88,11 +85,22 @@ class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - UISearchBarDelegate
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.filterData(withStirng: searchText)
+        viewModel.searchTerms = searchText
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.text = viewModel.searchTerms
+    }
 }
 
 extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.boardList.threads.count
+        return viewModel.filteredData.threads.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -112,6 +120,11 @@ extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionView
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerId",
                                                                              for: indexPath) as! ThreadFooterView
+            if !viewModel.searchTerms.isEmpty {
+                footerView.isHidden = true
+            } else {
+                footerView.isHidden = false
+            }
             return footerView
 
         default:

@@ -10,6 +10,8 @@
 		0249E7CF2E343F93F5F796DD /* Pods_IichDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3B6A7ADFD5D0C930F3EE1E /* Pods_IichDemo.framework */; };
 		748204EB964FF94D2D0A8552 /* Pods_IichDemo_IichDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25191570FBAC85F6EA9308DE /* Pods_IichDemo_IichDemoUITests.framework */; };
 		C10A5B3725C54D3C00427D78 /* ThreadFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B3625C54D3C00427D78 /* ThreadFooterView.swift */; };
+		C10A5B4125C5662800427D78 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B4025C5662800427D78 /* SearchBar.swift */; };
+		C10A5B4625C56AB200427D78 /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B4525C56AB200427D78 /* CustomSearchController.swift */; };
 		C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */; };
 		C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA925BD70EB00AD8DE2 /* Boards.swift */; };
 		C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */; };
@@ -61,6 +63,8 @@
 		8BAAFDBA0D54416CF78F114F /* Pods-IichDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemo.release.xcconfig"; path = "Target Support Files/Pods-IichDemo/Pods-IichDemo.release.xcconfig"; sourceTree = "<group>"; };
 		B2D97FDA3EDD583FFD8E00C2 /* Pods-IichDemo-IichDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemo-IichDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-IichDemo-IichDemoUITests/Pods-IichDemo-IichDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C10A5B3625C54D3C00427D78 /* ThreadFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadFooterView.swift; sourceTree = "<group>"; };
+		C10A5B4025C5662800427D78 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		C10A5B4525C56AB200427D78 /* CustomSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14D4EA925BD70EB00AD8DE2 /* Boards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boards.swift; sourceTree = "<group>"; };
 		C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfo.swift; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 			children = (
 				C1CC5C4025BBF932000D31B7 /* Constants.swift */,
 				C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */,
+				C10A5B4025C5662800427D78 /* SearchBar.swift */,
+				C10A5B4525C56AB200427D78 /* CustomSearchController.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 				C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */,
 				C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */,
 				C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */,
+				C10A5B4625C56AB200427D78 /* CustomSearchController.swift in Sources */,
 				C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */,
 				C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */,
 				C10A5B3725C54D3C00427D78 /* ThreadFooterView.swift in Sources */,
@@ -570,6 +577,7 @@
 				C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */,
 				C1564EB025BEC4DA00EAB937 /* ThreadCell.swift in Sources */,
 				C14D4EE125BEB29400AD8DE2 /* ThreadScreenViewModel.swift in Sources */,
+				C10A5B4125C5662800427D78 /* SearchBar.swift in Sources */,
 				C1CC5C4F25BBFBC2000D31B7 /* HomeScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

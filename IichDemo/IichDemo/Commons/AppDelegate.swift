@@ -15,6 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
+        if #available(iOS 13.0, *) {
+            let buttonAppearance = UIBarButtonItemAppearance()
+            buttonAppearance.configureWithDefault(for: .plain)
+            buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithOpaqueBackground()
+            navigationBarAppearance.backgroundColor = .orange
+            navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+            navigationBarAppearance.backButtonAppearance = buttonAppearance
+            navigationBarAppearance.buttonAppearance = buttonAppearance
+            navigationBarAppearance.doneButtonAppearance = buttonAppearance
+
+            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+            UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        } else {
+            UINavigationBar.appearance().barTintColor = .orange
+            UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+            UINavigationBar.appearance().tintColor = .white
+        }
+
         return true
     }
 

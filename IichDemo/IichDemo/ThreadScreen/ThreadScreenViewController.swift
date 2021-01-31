@@ -8,7 +8,7 @@
 import Cartography
 import UIKit
 
-class ThreadScreenViewController: UIViewController {
+class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
     // MARK: - Private Properties
 
     private var viewModel: ThreadScreenViewModel
@@ -25,6 +25,11 @@ class ThreadScreenViewController: UIViewController {
         enableBinding()
         viewModel.requestThreads { _ in }
         setupCollectionView()
+        setupSearchBar()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
     }
 
     // MARK: - Private Methods
@@ -57,6 +62,16 @@ class ThreadScreenViewController: UIViewController {
             collectionView.edges == collectionView.superview!.edges
         }
         collectionView.backgroundColor = R.color.background()
+    }
+
+    private func setupSearchBar() {
+        let customSearchController = CustomSearchController()
+        (customSearchController.searchBar as! SearchBar).searchIconColor = .white
+        (customSearchController.searchBar as! SearchBar).textColor = .white
+        (customSearchController.searchBar as! SearchBar).placeholderColor = R.color.moredark()
+        customSearchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = customSearchController
+        customSearchController.searchBar.delegate = self
     }
 
     // MARK: - UI Actions
@@ -98,6 +113,7 @@ extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionView
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerId",
                                                                              for: indexPath) as! ThreadFooterView
             return footerView
+
         default:
             assert(false, "Invalid element type")
         }

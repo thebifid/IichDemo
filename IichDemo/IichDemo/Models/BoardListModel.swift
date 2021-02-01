@@ -11,11 +11,13 @@ struct BoardListModel: Decodable {
     var Board: String
     var BoardName: String
     var threads: [Thread]
+    var pages: [Int]
 
     init() {
         Board = ""
         BoardName = ""
         threads = []
+        pages = []
     }
 }
 

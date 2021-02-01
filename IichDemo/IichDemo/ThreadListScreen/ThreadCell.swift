@@ -65,18 +65,23 @@ class ThreadCell: UICollectionViewCell {
         return label
     }()
 
+    // MARK: - Private Properties
+
+    private var cellCategory: CellCategory = .withSubject
+    private let group = ConstraintGroup()
+
+    // MARK: - Enums
+
     enum CellCategory {
         case withSubject, noSubject
     }
 
-    var cellCategory: CellCategory = .withSubject
+    // MARK: - Public Methods
 
     override func prepareForReuse() {
         super.prepareForReuse()
         firstImageView.image = nil
     }
-
-    // MARK: - Public Methods
 
     func setupCell(withCellModel model: ThreadCellModel) {
         if model.boardKey == "b" {
@@ -103,8 +108,6 @@ class ThreadCell: UICollectionViewCell {
     }
 
     // MARK: - UI Actions
-
-    let group = ConstraintGroup()
 
     private func setupUI() {
         backgroundColor = R.color.moredark()
@@ -172,16 +175,5 @@ class ThreadCell: UICollectionViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension String {
-    func height(constraintedWidth width: CGFloat, font: UIFont = .systemFont(ofSize: 14)) -> CGFloat {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: .greatestFiniteMagnitude))
-        label.numberOfLines = 0
-        label.text = self
-        label.font = font
-        label.sizeToFit()
-        return label.frame.height
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ThreadScreenViewModel.swift
+//  ThreadListScreenViewModel.swift
 //  IichDemo
 //
 //  Created by Vasiliy Matveev on 25.01.2021.
@@ -7,17 +7,20 @@
 
 import Foundation
 
-class ThreadScreenViewModel {
+class ThreadListScreenViewModel {
     // MARK: - Private Properties
+
+    private var currentPage: Int = 0
+    private var boardList: BoardListModel = BoardListModel()
 
     // MARK: - Public Properties
 
     let boardInfo: BoardModel
-    var boardList: BoardListModel = BoardListModel()
-    var currentPage: Int = 0
     var filteredData: BoardListModel = BoardListModel()
-
     var searchTerms: String = ""
+    var isAllPagesLoaded: Bool {
+        return currentPage == (boardList.pages.last ?? 0) - 1
+    }
 
     // MARK: - Handlers
 
@@ -25,9 +28,9 @@ class ThreadScreenViewModel {
 
     // MARK: - Public Methods
 
+    /// Filtering threads
     func filterData(withStirng searchString: String) {
         filteredData = BoardListModel()
-
         if searchString.isEmpty {
             filteredData = boardList
         } else {
@@ -38,19 +41,25 @@ class ThreadScreenViewModel {
                 }
             }
         }
-
         didUpdateModel?()
     }
 
+    /// Request threads
     func requestThreads(completion: @escaping ((Result<Void, Error>) -> Void)) {
+        print(isAllPagesLoaded)
+        guard !isAllPagesLoaded else { return }
         NetworkService.sharedInstance.requestBoardInfo(boardKey: boardInfo.id, pageNumber: currentPage) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .failure(error):
                 completion(.failure(error))
             case let .success(boardList):
+                self.boardList.pages = boardList.pages
                 self.boardList.threads.append(contentsOf: boardList.threads)
                 self.filteredData = self.boardList
+                if !self.searchTerms.isEmpty {
+                    self.filterData(withStirng: self.searchTerms)
+                }
                 self.currentPage += 1
                 self.didUpdateModel?()
                 completion(.success(()))
@@ -58,6 +67,7 @@ class ThreadScreenViewModel {
         }
     }
 
+    /// Forming cells
     func formCellModel(index: Int) -> ThreadCellModel {
         let data = filteredData.threads[index].posts[0]
         return ThreadCellModel(countFiles: data.files_count ?? 0,

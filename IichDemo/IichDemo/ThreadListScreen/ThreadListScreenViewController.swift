@@ -1,5 +1,5 @@
 //
-//  ThreadScreenViewController.swift
+//  ThreadListScreenViewController.swift
 //  IichDemo
 //
 //  Created by Vasiliy Matveev on 25.01.2021.
@@ -8,14 +8,14 @@
 import Cartography
 import UIKit
 
-class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
+class ThreadListScreenViewController: UIViewController, UISearchBarDelegate {
     // MARK: - Private Properties
 
-    private var viewModel: ThreadScreenViewModel
+    private var viewModel: ThreadListScreenViewModel
 
     // MARK: - UI Controls
 
-    var myCollectionView: UICollectionView?
+    private var myCollectionView: UICollectionView?
 
     // MARK: - Lifecycle
 
@@ -38,12 +38,15 @@ class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
         }
     }
 
+    // MARK: - UI Actions
+
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
 
         layout.sectionInset = .init(top: 20, left: 5, bottom: 20, right: 5)
 
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        collectionView.alwaysBounceVertical = true
         myCollectionView = collectionView
 
         collectionView.dataSource = self
@@ -71,13 +74,9 @@ class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
 
-    // MARK: - UI Actions
-
-    private func setupUI() {}
-
     // MARK: - Init
 
-    init(viewModel: ThreadScreenViewModel) {
+    init(viewModel: ThreadListScreenViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -98,7 +97,7 @@ class ThreadScreenViewController: UIViewController, UISearchBarDelegate {
     }
 }
 
-extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ThreadListScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.filteredData.threads.count
     }
@@ -120,7 +119,8 @@ extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionView
         case UICollectionView.elementKindSectionFooter:
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerId",
                                                                              for: indexPath) as! ThreadFooterView
-            if !viewModel.searchTerms.isEmpty {
+
+            if viewModel.isAllPagesLoaded || viewModel.filteredData.threads.isEmpty {
                 footerView.isHidden = true
             } else {
                 footerView.isHidden = false
@@ -138,7 +138,7 @@ extension ThreadScreenViewController: UICollectionViewDelegate, UICollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == viewModel.boardList.threads.count - 1 {
+        if indexPath.item == viewModel.filteredData.threads.count - 1 {
             viewModel.requestThreads { result in
                 switch result {
                 case let .failure(error):

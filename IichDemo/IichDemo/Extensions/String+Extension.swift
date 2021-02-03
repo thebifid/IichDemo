@@ -16,4 +16,8 @@ extension String {
         label.sizeToFit()
         return label.frame.height
     }
+
+    func clearHTMLTags() -> String {
+        return replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+    }
 }

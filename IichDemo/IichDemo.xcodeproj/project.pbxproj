@@ -13,6 +13,10 @@
 		C10A5B4125C5662800427D78 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B4025C5662800427D78 /* SearchBar.swift */; };
 		C10A5B4625C56AB200427D78 /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B4525C56AB200427D78 /* CustomSearchController.swift */; };
 		C10A5B6425C7F59B00427D78 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B6325C7F59B00427D78 /* String+Extension.swift */; };
+		C10A5B7025C8084200427D78 /* ThreadScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B6F25C8084200427D78 /* ThreadScreenViewController.swift */; };
+		C10A5B7525C810A400427D78 /* ThreadScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B7425C810A400427D78 /* ThreadScreenViewModel.swift */; };
+		C10A5B7A25C81DB700427D78 /* ThreadMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */; };
+		C10A5B8225C8277900427D78 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B8125C8277900427D78 /* MessageCell.swift */; };
 		C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */; };
 		C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA925BD70EB00AD8DE2 /* Boards.swift */; };
 		C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */; };
@@ -67,6 +71,10 @@
 		C10A5B4025C5662800427D78 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C10A5B4525C56AB200427D78 /* CustomSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		C10A5B6325C7F59B00427D78 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C10A5B6F25C8084200427D78 /* ThreadScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadScreenViewController.swift; sourceTree = "<group>"; };
+		C10A5B7425C810A400427D78 /* ThreadScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadScreenViewModel.swift; sourceTree = "<group>"; };
+		C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadMessagesModel.swift; sourceTree = "<group>"; };
+		C10A5B8125C8277900427D78 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14D4EA925BD70EB00AD8DE2 /* Boards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boards.swift; sourceTree = "<group>"; };
 		C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfo.swift; sourceTree = "<group>"; };
@@ -142,6 +150,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C10A5B6E25C8082700427D78 /*  ThreadScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C10A5B6F25C8084200427D78 /* ThreadScreenViewController.swift */,
+				C10A5B7425C810A400427D78 /* ThreadScreenViewModel.swift */,
+				C10A5B8125C8277900427D78 /* MessageCell.swift */,
+			);
+			path = " ThreadScreen";
+			sourceTree = "<group>";
+		};
 		C14D4EA325BD689200AD8DE2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +174,7 @@
 				C14D4EA925BD70EB00AD8DE2 /* Boards.swift */,
 				C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */,
 				C1758C8925C14AD7005FDE6F /* BoardListModel.swift */,
+				C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */,
 				C1C0BB5F25C2C50000E208FB /* ThreadCellModel.swift */,
 			);
 			path = Models;
@@ -196,12 +215,13 @@
 		C1CC5B1225BBC834000D31B7 /* IichDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C1CC5C3F25BBF92A000D31B7 /* Helpers */,
 				C10A5B6225C7F58C00427D78 /* Extensions */,
 				C14D4EB425BDA36400AD8DE2 /* Models */,
 				C14D4EA325BD689200AD8DE2 /* Services */,
-				C1CC5C3F25BBF92A000D31B7 /* Helpers */,
-				C14D4ED225BE9E7A00AD8DE2 /* ThreadListScreen */,
 				C1CC5BEF25BBD85E000D31B7 /* HomeScreen */,
+				C14D4ED225BE9E7A00AD8DE2 /* ThreadListScreen */,
+				C10A5B6E25C8082700427D78 /*  ThreadScreen */,
 				C1CC5BEB25BBD81F000D31B7 /* Resources */,
 				C1CC5BE725BBD6E7000D31B7 /* Commons */,
 			);
@@ -570,8 +590,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C10A5B7025C8084200427D78 /* ThreadScreenViewController.swift in Sources */,
 				C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */,
 				C10A5B6425C7F59B00427D78 /* String+Extension.swift in Sources */,
+				C10A5B7525C810A400427D78 /* ThreadScreenViewModel.swift in Sources */,
 				C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */,
 				C1C0BB6025C2C50000E208FB /* ThreadCellModel.swift in Sources */,
 				C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */,
@@ -579,6 +601,7 @@
 				C1758C8A25C14AD7005FDE6F /* BoardListModel.swift in Sources */,
 				C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */,
 				C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */,
+				C10A5B8225C8277900427D78 /* MessageCell.swift in Sources */,
 				C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */,
 				C10A5B4625C56AB200427D78 /* CustomSearchController.swift in Sources */,
 				C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */,
@@ -589,6 +612,7 @@
 				C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */,
 				C1564EB025BEC4DA00EAB937 /* ThreadCell.swift in Sources */,
 				C14D4EE125BEB29400AD8DE2 /* ThreadListScreenViewModel.swift in Sources */,
+				C10A5B7A25C81DB700427D78 /* ThreadMessagesModel.swift in Sources */,
 				C10A5B4125C5662800427D78 /* SearchBar.swift in Sources */,
 				C1CC5C4F25BBFBC2000D31B7 /* HomeScreenViewController.swift in Sources */,
 			);

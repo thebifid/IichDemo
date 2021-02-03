@@ -13,25 +13,25 @@ import UIKit
 class ThreadCell: UICollectionViewCell {
     // MARK: - UI Controls
 
-    let headerForThreadImages: UIView = {
+    private let headerForThreadImages: UIView = {
         let view = UIView()
         view.backgroundColor = R.color.moredark()
         return view
     }()
 
-    let firstImageView: UIImageView = {
+    private let firstImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         return iv
     }()
 
-    let threadAttachmentView: UIView = {
+    private let threadAttachmentView: UIView = {
         let view = UIView()
         view.backgroundColor = R.color.background()
         return view
     }()
 
-    let numberOfPostsLabel: UILabel = {
+    private let numberOfPostsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .boldSystemFont(ofSize: 12)
@@ -39,7 +39,7 @@ class ThreadCell: UICollectionViewCell {
         return label
     }()
 
-    let numberOfFilesLabel: UILabel = {
+    private let numberOfFilesLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .boldSystemFont(ofSize: 12)
@@ -47,7 +47,7 @@ class ThreadCell: UICollectionViewCell {
         return label
     }()
 
-    let threadSubjectLabel: UILabel = {
+    private let threadSubjectLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .white
@@ -55,7 +55,7 @@ class ThreadCell: UICollectionViewCell {
         return label
     }()
 
-    let threadCommentLabel: AttributedLabel = {
+    private let threadCommentLabel: AttributedLabel = {
         let label = AttributedLabel()
         label.numberOfLines = 0
         label.textColor = .white

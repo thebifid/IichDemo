@@ -59,4 +59,27 @@ class NetworkService {
             }.resume()
         }
     }
+
+    func requestThreadMessages(withBoardKey boardKey: String, threadNumber: String,
+                               completion: @escaping (Result<ThreadMessagesModel, Error>) -> Void) {
+        guard let url = URL(string: "https://2ch.hk/\(boardKey)/res/\(threadNumber).json") else { return }
+
+        URLSession.shared.dataTask(with: url) { data, _, error in
+
+            if error != nil {
+                completion(.failure(error!))
+                return
+            }
+
+            if let data = data {
+                do {
+                    let messages = try JSONDecoder().decode(ThreadMessagesModel.self, from: data)
+                    completion(.success(messages))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+
+        }.resume()
+    }
 }

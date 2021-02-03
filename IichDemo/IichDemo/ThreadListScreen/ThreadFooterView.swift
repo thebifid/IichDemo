@@ -11,7 +11,7 @@ import UIKit
 class ThreadFooterView: UICollectionReusableView {
     // MARK: - UI Controls
 
-    let activityIndicator: UIActivityIndicatorView = {
+    private let activityIndicator: UIActivityIndicatorView = {
         let ai = UIActivityIndicatorView(style: .large)
         ai.hidesWhenStopped = true
         ai.color = .white

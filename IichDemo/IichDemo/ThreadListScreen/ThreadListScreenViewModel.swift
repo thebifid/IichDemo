@@ -46,7 +46,6 @@ class ThreadListScreenViewModel {
 
     /// Request threads
     func requestThreads(completion: @escaping ((Result<Void, Error>) -> Void)) {
-        print(isAllPagesLoaded)
         guard !isAllPagesLoaded else { return }
         NetworkService.sharedInstance.requestBoardInfo(boardKey: boardInfo.id, pageNumber: currentPage) { [weak self] result in
             guard let self = self else { return }

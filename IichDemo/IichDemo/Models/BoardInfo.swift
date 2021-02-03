@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct BoardInfo: Decodable {
-    let Board: String
-    let BoardName: String
+struct BoardInfo {
+    let boardName: String
+    let boardKey: String
+    let threadNum: String
 }

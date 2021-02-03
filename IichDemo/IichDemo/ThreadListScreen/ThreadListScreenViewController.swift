@@ -137,6 +137,15 @@ extension ThreadListScreenViewController: UICollectionViewDelegate, UICollection
         return .init(width: Constants.deviceWidth, height: 50)
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let boardInfo = BoardInfo(boardName: viewModel.boardInfo.name,
+                                  boardKey: viewModel.boardInfo.id, threadNum: viewModel.filteredData.threads[indexPath.item].thread_num)
+        let viewModelToSend = ThreadScreenViewModel(boardInfo: boardInfo)
+        let viewControllerToSend = ThreadScreenViewController(viewModel: viewModelToSend)
+        viewControllerToSend.navigationItem.title = viewModel.filteredData.threads[indexPath.item].posts[0].subject
+        navigationController?.pushViewController(viewControllerToSend, animated: true)
+    }
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == viewModel.filteredData.threads.count - 1 {
             viewModel.requestThreads { result in

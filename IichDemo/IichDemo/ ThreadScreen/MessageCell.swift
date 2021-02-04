@@ -105,8 +105,37 @@ class MessageCell: UITableViewCell {
     func setupCell(message: Message) {
         messageInfoLabel.text = "#\(message.number) ● \(message.num) ● \(message.date)"
 
-        let link = Style("a").foregroundColor(.orange)
-        messageLabel.attributedText = message.comment.style(tags: link)
+        let all = Style.font(.systemFont(ofSize: 20))
+        let link = Style("a").foregroundColor(.orange, .normal).foregroundColor(.gray, .highlighted)
+
+        let strong = Style("strong").font(.boldSystemFont(ofSize: 18))
+        let h3 = Style("h3")
+        let spoiler = Style("spoiler")
+            .foregroundColor(.clear, .normal)
+            .foregroundColor(.white, .highlighted)
+            .backgroundColor(.gray, .normal)
+            .backgroundColor(.clear, .highlighted)
+
+        let quote = Style("quote").foregroundColor(.green)
+
+        messageLabel.attributedText = message.comment.fromSpanToTag(className: [.quote, .spoiler])
+            .spacingBetweenBlockTags()
+            .style(tags: link, strong, h3, spoiler, quote, all)
+
+        messageLabel.isUserInteractionEnabled = true
+
+        messageLabel.onClick = { label, detection in
+            switch detection.type {
+            case let .tag(tag):
+                if tag.name == "spoiler" {
+                    label.attributedText = label.attributedText?
+                        .style(range: detection.range, style: Style().foregroundColor(.white, .normal).backgroundColor(.clear, .normal))
+                }
+
+            default:
+                break
+            }
+        }
 
         if !message.files.isEmpty {
             guard let url = URL(string: "https://2ch.hk\(message.files[0].thumbnail!)") else { return }
@@ -205,6 +234,7 @@ class MessageCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.isUserInteractionEnabled = false
     }
 
     required init?(coder: NSCoder) {

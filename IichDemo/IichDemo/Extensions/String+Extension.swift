@@ -22,7 +22,7 @@ extension String {
     }
 
     enum Tag: String {
-        case quote, spoiler
+        case quote, spoiler, strikethrough
     }
 
     func fromSpanToTag(className: [Tag]) -> String {
@@ -38,6 +38,9 @@ extension String {
             case .spoiler:
                 spanClass = "spoiler"
                 tag = "spoiler"
+            case .strikethrough:
+                spanClass = "s"
+                tag = "strikethrough"
             }
 
             let detectedCount = result.detect(regex: "<span class=\"\(spanClass)\">[^>]+</span>")
@@ -47,9 +50,9 @@ extension String {
                 if let range = range {
                     let startIndex = range.lowerBound
                     let endIndex = range.upperBound
-                    let text = String(result[result.index(startIndex, offsetBy: 22) ... result.index(endIndex, offsetBy: -8)])
+                    let text = String(result[result.index(startIndex, offsetBy: 15 + spanClass.count) ... result.index(endIndex, offsetBy: -8)])
                     result = result.replacingOccurrences(of: "<span class=\"\(spanClass)\">[^>]+</span>",
-                                                         with: "<\(tag) text=\"\(text)\">\(text)</\(tag)>",
+                                                         with: "<\(tag)>\(text)</\(tag)>",
                                                          options: .regularExpression, range: range)
                 }
             }

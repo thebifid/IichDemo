@@ -118,9 +118,13 @@ class MessageCell: UITableViewCell {
 
         let quote = Style("quote").foregroundColor(.green)
 
-        messageLabel.attributedText = message.comment.fromSpanToTag(className: [.quote, .spoiler])
+        let strikethrough = Style("strikethrough").strikethroughStyle(NSUnderlineStyle.single)
+
+        let em = Style("em").font(.italicSystemFont(ofSize: 18))
+
+        messageLabel.attributedText = message.comment.fromSpanToTag(className: [.quote, .spoiler, .strikethrough])
             .spacingBetweenBlockTags()
-            .style(tags: link, strong, h3, spoiler, quote, all)
+            .style(tags: link, strong, h3, spoiler, quote, strikethrough, em, all)
 
         messageLabel.isUserInteractionEnabled = true
 

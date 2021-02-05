@@ -50,7 +50,8 @@ extension String {
                 if let range = range {
                     let startIndex = range.lowerBound
                     let endIndex = range.upperBound
-                    let text = String(result[result.index(startIndex, offsetBy: 15 + spanClass.count) ... result.index(endIndex, offsetBy: -8)])
+                    let text = String(result[result.index(startIndex, offsetBy: 15 + spanClass.count) ... result.index(endIndex,
+                                                                                                                       offsetBy: -8)])
                     result = result.replacingOccurrences(of: "<span class=\"\(spanClass)\">[^>]+</span>",
                                                          with: "<\(tag)>\(text)</\(tag)>",
                                                          options: .regularExpression, range: range)

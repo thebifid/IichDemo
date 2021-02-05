@@ -18,7 +18,7 @@ class ThreadScreenViewController: UITableViewController {
         super.viewDidLoad()
 
         enableDataBinding()
-        tableView.separatorColor = .white
+        tableView.separatorColor = .gray
         tableView.allowsSelection = false
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cellId")
         tableView.backgroundColor = R.color.background()

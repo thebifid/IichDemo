@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             let navigationBarAppearance = UINavigationBarAppearance()
             navigationBarAppearance.configureWithOpaqueBackground()
-            navigationBarAppearance.backgroundColor = .orange
+            navigationBarAppearance.backgroundColor = R.color.moredark()
             navigationBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
 
             navigationBarAppearance.backButtonAppearance = buttonAppearance
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().compactAppearance = navigationBarAppearance
             UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         } else {
-            UINavigationBar.appearance().barTintColor = .orange
+            UINavigationBar.appearance().barTintColor = R.color.moredark()
             UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
             UINavigationBar.appearance().tintColor = .white
         }

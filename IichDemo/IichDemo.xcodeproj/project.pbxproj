@@ -17,6 +17,7 @@
 		C10A5B7525C810A400427D78 /* ThreadScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B7425C810A400427D78 /* ThreadScreenViewModel.swift */; };
 		C10A5B7A25C81DB700427D78 /* ThreadMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */; };
 		C10A5B8225C8277900427D78 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B8125C8277900427D78 /* MessageCell.swift */; };
+		C10A5B8825CD499400427D78 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B8725CD499400427D78 /* Date+Extension.swift */; };
 		C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */; };
 		C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA925BD70EB00AD8DE2 /* Boards.swift */; };
 		C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */; };
@@ -75,6 +76,7 @@
 		C10A5B7425C810A400427D78 /* ThreadScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadScreenViewModel.swift; sourceTree = "<group>"; };
 		C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadMessagesModel.swift; sourceTree = "<group>"; };
 		C10A5B8125C8277900427D78 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		C10A5B8725CD499400427D78 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14D4EA925BD70EB00AD8DE2 /* Boards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boards.swift; sourceTree = "<group>"; };
 		C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfo.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				C10A5B6325C7F59B00427D78 /* String+Extension.swift */,
+				C10A5B8725CD499400427D78 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */,
 				C10A5B4625C56AB200427D78 /* CustomSearchController.swift in Sources */,
 				C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */,
+				C10A5B8825CD499400427D78 /* Date+Extension.swift in Sources */,
 				C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */,
 				C10A5B3725C54D3C00427D78 /* ThreadFooterView.swift in Sources */,
 				C1CC5C1025BBDB18000D31B7 /* R.generated.swift in Sources */,

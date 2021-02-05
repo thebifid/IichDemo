@@ -20,7 +20,7 @@ class MessageCell: UITableViewCell {
 
     private let messageInfoLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .lightGray
         label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
@@ -77,13 +77,17 @@ class MessageCell: UITableViewCell {
 
     private let answersButton: UIButton = {
         let button = UIButton(type: .system)
-        button.layer.cornerRadius = 5
         button.backgroundColor = .clear
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.orange.cgColor
-        button.setTitle("39", for: .normal)
+        button.setTitle("12 replies", for: .normal)
         button.setTitleColor(.orange, for: .normal)
         return button
+    }()
+
+    private let timeAgoLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .lightGray
+        label.font = .boldSystemFont(ofSize: 12)
+        return label
     }()
 
     private lazy var imagesStackView = UIStackView(arrangedSubviews: [firstImageView, secondImageView, thirdImageView, fourthImageView])
@@ -103,11 +107,13 @@ class MessageCell: UITableViewCell {
     }
 
     func setupCell(message: Message) {
-        messageInfoLabel.text = "#\(message.number) ● \(message.num) ● \(message.date)"
+        let timeAgo = Date().offsetFrom(date: Date(timeIntervalSince1970: TimeInterval(message.timestamp)))
+        timeAgoLabel.text = "\(timeAgo)"
+
+        messageInfoLabel.text = "#\(message.number) • \(message.num)"
 
         let all = Style.font(.systemFont(ofSize: 20))
         let link = Style("a").foregroundColor(.orange, .normal).foregroundColor(.gray, .highlighted)
-
         let strong = Style("strong").font(.boldSystemFont(ofSize: 18))
         let h3 = Style("h3")
         let spoiler = Style("spoiler")
@@ -115,11 +121,8 @@ class MessageCell: UITableViewCell {
             .foregroundColor(.white, .highlighted)
             .backgroundColor(.gray, .normal)
             .backgroundColor(.clear, .highlighted)
-
-        let quote = Style("quote").foregroundColor(.green)
-
+        let quote = Style("quote").foregroundColor(R.color.quoteGreen()!)
         let strikethrough = Style("strikethrough").strikethroughStyle(NSUnderlineStyle.single)
-
         let em = Style("em").font(.italicSystemFont(ofSize: 18))
 
         messageLabel.attributedText = message.comment.fromSpanToTag(className: [.quote, .spoiler, .strikethrough])
@@ -222,7 +225,12 @@ class MessageCell: UITableViewCell {
             answersButton.centerY == answersButton.superview!.centerY
             answersButton.right == answersButton.superview!.right - 15
             answersButton.height == answersButton.superview!.height * 0.8
-            answersButton.width == answersButton.superview!.height * 0.8
+        }
+
+        bottomView.addSubview(timeAgoLabel)
+        constrain(timeAgoLabel) { timeAgoLabel in
+            timeAgoLabel.centerY == timeAgoLabel.superview!.centerY
+            timeAgoLabel.left == timeAgoLabel.superview!.left + 10
         }
 
         addSubview(messageLabel)

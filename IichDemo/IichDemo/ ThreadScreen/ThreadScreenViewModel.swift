@@ -16,6 +16,8 @@ class ThreadScreenViewModel {
 
     // MARK: = Public Properties
 
+    var replies: [String: [Int]] = [:]
+
     var posts: [Message] {
         if !filter.isEmpty {
             return threadMessages.filter { String($0.num) == filter }
@@ -33,7 +35,6 @@ class ThreadScreenViewModel {
 
     // MARK: - Public Methods
 
-    var replies: [String: [Int]] = [:]
     func findReplies() {
         posts.forEach { post in
             if !post.comment.detect(regex: "data-num").isEmpty {

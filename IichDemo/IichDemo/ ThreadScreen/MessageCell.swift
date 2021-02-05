@@ -78,7 +78,6 @@ class MessageCell: UITableViewCell {
     private let answersButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
-        button.setTitle("12 replies", for: .normal)
         button.setTitleColor(.orange, for: .normal)
         return button
     }()
@@ -110,7 +109,11 @@ class MessageCell: UITableViewCell {
         fourthImageView.image = nil
     }
 
-    func setupCell(message: Message) {
+    func setupCell(message: Message, replies: [Int]) {
+        if !replies.isEmpty {
+            answersButton.setTitle("\(replies.count) replies", for: .normal)
+        }
+
         let timeAgo = Date().offsetFrom(date: Date(timeIntervalSince1970: TimeInterval(message.timestamp)))
         timeAgoLabel.text = "\(timeAgo)"
 

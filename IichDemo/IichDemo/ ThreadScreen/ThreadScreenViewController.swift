@@ -55,7 +55,8 @@ class ThreadScreenViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MessageCell
-        cell.setupCell(message: viewModel.posts[indexPath.row])
+        let replies = viewModel.replies[String(viewModel.posts[indexPath.row].num)]
+        cell.setupCell(message: viewModel.posts[indexPath.row], replies: replies ?? [])
         cell.didReplyLinkClicked = { parentNum in
             let vm = ThreadScreenViewModel(boardInfo: BoardInfo(), threadMessages: self.viewModel.rawPosts, filter: parentNum)
             let vc = ThreadScreenViewController(viewModel: vm)

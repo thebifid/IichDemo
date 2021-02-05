@@ -92,6 +92,10 @@ class MessageCell: UITableViewCell {
 
     private lazy var imagesStackView = UIStackView(arrangedSubviews: [firstImageView, secondImageView, thirdImageView, fourthImageView])
 
+    // MARK: - Handlers
+
+    var didReplyLinkClicked: ((String) -> Void)?
+
     // MARK: - Private Properties
 
     private let group = ConstraintGroup()
@@ -131,12 +135,17 @@ class MessageCell: UITableViewCell {
 
         messageLabel.isUserInteractionEnabled = true
 
-        messageLabel.onClick = { label, detection in
+        messageLabel.onClick = { [weak self] label, detection in
             switch detection.type {
             case let .tag(tag):
                 if tag.name == "spoiler" {
                     label.attributedText = label.attributedText?
                         .style(range: detection.range, style: Style().foregroundColor(.white, .normal).backgroundColor(.clear, .normal))
+                }
+
+                if tag.name == "a" {
+                    guard let parentNum = tag.attributes["data-num"] else { return }
+                    self?.didReplyLinkClicked?(parentNum)
                 }
 
             default:

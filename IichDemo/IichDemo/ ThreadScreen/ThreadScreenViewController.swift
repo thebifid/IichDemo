@@ -22,7 +22,12 @@ class ThreadScreenViewController: UITableViewController {
         tableView.allowsSelection = false
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cellId")
         tableView.backgroundColor = R.color.background()
-        viewModel.requestThreadMessages()
+
+        if viewModel.posts.isEmpty {
+            viewModel.requestThreadMessages()
+        } else {
+            print("No request")
+        }
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
@@ -51,6 +56,11 @@ class ThreadScreenViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MessageCell
         cell.setupCell(message: viewModel.posts[indexPath.row])
+        cell.didReplyLinkClicked = { parentNum in
+            let vm = ThreadScreenViewModel(boardInfo: BoardInfo(), threadMessages: self.viewModel.rawPosts, filter: parentNum)
+            let vc = ThreadScreenViewController(viewModel: vm)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         return cell
     }
 

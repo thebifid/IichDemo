@@ -25,9 +25,7 @@ class ThreadScreenViewController: UITableViewController {
 
         if viewModel.posts.isEmpty {
             viewModel.requestThreadMessages()
-        } else {
-            print("No request")
-        }
+        } else {}
 
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
@@ -55,13 +53,17 @@ class ThreadScreenViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MessageCell
-        let replies = viewModel.replies[String(viewModel.posts[indexPath.row].num)]
-        cell.setupCell(message: viewModel.posts[indexPath.row], replies: replies ?? [])
-        cell.didReplyLinkClicked = { parentNum in
-            let vm = ThreadScreenViewModel(boardInfo: BoardInfo(), threadMessages: self.viewModel.rawPosts, filter: parentNum)
+
+        cell.didReplyLinkClicked = { _ in
+        }
+
+        cell.didAnswersButtonClicked = { postNumber in
+            let vm = ThreadScreenViewModel(boardInfo: BoardInfo(), threadMessages: self.viewModel.rawPosts, filter: postNumber)
             let vc = ThreadScreenViewController(viewModel: vm)
             self.navigationController?.pushViewController(vc, animated: true)
         }
+
+        cell.setupCell(message: viewModel.posts[indexPath.row])
         return cell
     }
 

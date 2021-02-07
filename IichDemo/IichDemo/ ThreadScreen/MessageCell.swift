@@ -93,11 +93,13 @@ class MessageCell: UITableViewCell {
 
     // MARK: - Handlers
 
-    var didReplyLinkClicked: ((String) -> Void)?
+    var didReplyLinkClicked: ((Int) -> Void)?
+    var didAnswersButtonClicked: ((Int) -> Void)?
 
     // MARK: - Private Properties
 
     private let group = ConstraintGroup()
+    private var num: Int = 0
 
     // MARK: - Public Methods
 
@@ -107,12 +109,14 @@ class MessageCell: UITableViewCell {
         secondImageView.image = nil
         thirdImageView.image = nil
         fourthImageView.image = nil
+        answersButton.setTitle("", for: .normal)
     }
 
-    func setupCell(message: Message, replies: [Int]) {
-        if !replies.isEmpty {
+    func setupCell(message: Message) {
+        if let replies = message.replies {
             answersButton.setTitle("\(replies.count) replies", for: .normal)
         }
+        num = message.num
 
         let timeAgo = Date().offsetFrom(date: Date(timeIntervalSince1970: TimeInterval(message.timestamp)))
         timeAgoLabel.text = "\(timeAgo)"
@@ -148,7 +152,7 @@ class MessageCell: UITableViewCell {
 
                 if tag.name == "a" {
                     guard let parentNum = tag.attributes["data-num"] else { return }
-                    self?.didReplyLinkClicked?(parentNum)
+                    self?.didReplyLinkClicked?(Int(parentNum)!) // !
                 }
 
             default:
@@ -175,6 +179,13 @@ class MessageCell: UITableViewCell {
             }
         }
         setupUI(haveAttachements: !message.files.isEmpty)
+        answersButton.addTarget(self, action: #selector(anserwsButtonPressed), for: .touchUpInside)
+    }
+
+    // MARK: - Selectors
+
+    @objc private func anserwsButtonPressed() {
+        didAnswersButtonClicked?(num)
     }
 
     // MARK: - UI Actions

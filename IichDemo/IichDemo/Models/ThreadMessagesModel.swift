@@ -38,6 +38,7 @@ struct Message: Decodable {
     let sticky: Int
     let subject: String
     let timestamp: Int
+    var replies: [Int]?
 }
 
 struct Attachements: Decodable {

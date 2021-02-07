@@ -13,6 +13,7 @@ class ThreadScreenViewModel {
     private let boardInfo: BoardInfo
     private var threadMessages: [Message]
     private let filter: Int
+    private let onePostShow: Int
 
     // MARK: = Public Properties
 
@@ -23,10 +24,20 @@ class ThreadScreenViewModel {
     }
 
     var posts: [Message] {
-        if filter == 0 {
-            return threadMessages
+        if filter != 0 {
+            return filtedData(withFiler: filter)
         }
-        return filtedData(withFiler: filter)
+        if onePostShow != 0 {
+            switch filterPost(postsNum: onePostShow) {
+            case let .success(message):
+                return message
+
+            default:
+                break
+            }
+        }
+
+        return threadMessages
     }
 
     func filtedData(withFiler filter: Int) -> [Message] {
@@ -37,6 +48,17 @@ class ThreadScreenViewModel {
             filtered += threadMessages.filter { $0.num == filtNum }
         }
         return filtered
+    }
+
+    func filterPost(postsNum: Int) -> Result<[Message], Error> {
+        var message: [Message] = []
+        if let post = threadMessages.first(where: { $0.num == postsNum }) {
+            message.append(post)
+            return .success(message)
+        } else {
+            let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Нет такого поста"])
+            return .failure(error)
+        }
     }
 
     // MARK: - Data Binding
@@ -90,9 +112,10 @@ class ThreadScreenViewModel {
 
     // MARK: - Init
 
-    init(boardInfo: BoardInfo, threadMessages: [Message] = [], filter: Int = 0) {
+    init(boardInfo: BoardInfo, threadMessages: [Message] = [], filter: Int = 0, onePostShow: Int = 0) {
         self.boardInfo = boardInfo
         self.threadMessages = threadMessages
         self.filter = filter
+        self.onePostShow = onePostShow
     }
 }

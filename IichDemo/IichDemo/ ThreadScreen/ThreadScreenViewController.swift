@@ -30,13 +30,23 @@ class ThreadScreenViewController: UITableViewController {
         enableDataBinding()
         makeRequest()
         setupTableView()
+        setupRightBarButton()
     }
+
+    // MARK: - Selectors
+
+    @objc private func openGallery() {}
 
     // MARK: - Private Methods
 
+    private func setupRightBarButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "tablecells"),
+                                                            style: .plain, target: self, action: #selector(openGallery))
+    }
+
     private func makeRequest() {
-        activityIndicatorView.startAnimating()
         if viewModel.posts.isEmpty {
+            activityIndicatorView.startAnimating()
             viewModel.requestThreadMessages()
         }
     }
@@ -89,16 +99,28 @@ class ThreadScreenViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MessageCell
 
-        cell.didReplyLinkClicked = { postNumber in
+        cell.didReplyLinkClicked = { [weak self] postNumber in
+            guard let self = self else { return }
             let vm = ThreadScreenViewModel(boardInfo: BoardInfo(), threadMessages: self.viewModel.rawPosts, onePostShow: postNumber)
             let vc = ThreadScreenViewController(viewModel: vm)
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
-        cell.didAnswersButtonClicked = { postNumber in
+        cell.didAnswersButtonClicked = { [weak self] postNumber in
+            guard let self = self else { return }
             let vm = ThreadScreenViewModel(boardInfo: BoardInfo(), threadMessages: self.viewModel.rawPosts, filter: postNumber)
             let vc = ThreadScreenViewController(viewModel: vm)
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+
+        cell.didImageClicked = { [weak self] dict in
+            if let originalPath = self?.viewModel.posts[dict.first!.key - 1]
+                .files.first(where: { dict.first!.value.contains($0.thumbnail!) })?.path {
+                let galleryVC = GalleryViewController(pathToOriginal: originalPath)
+                let navGalleryVC = UINavigationController(rootViewController: galleryVC)
+                navGalleryVC.modalPresentationStyle = .fullScreen
+                self?.present(navGalleryVC, animated: true, completion: nil)
+            }
         }
 
         cell.setupCell(message: viewModel.posts[indexPath.row])

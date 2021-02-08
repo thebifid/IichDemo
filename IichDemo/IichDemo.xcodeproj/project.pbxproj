@@ -18,6 +18,7 @@
 		C10A5B7A25C81DB700427D78 /* ThreadMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */; };
 		C10A5B8225C8277900427D78 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B8125C8277900427D78 /* MessageCell.swift */; };
 		C10A5B8825CD499400427D78 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B8725CD499400427D78 /* Date+Extension.swift */; };
+		C11E1D6025D15D4E0001E8BA /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11E1D5F25D15D4E0001E8BA /* Storyboard.storyboard */; };
 		C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */; };
 		C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA925BD70EB00AD8DE2 /* Boards.swift */; };
 		C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */; };
@@ -25,6 +26,7 @@
 		C14D4EE125BEB29400AD8DE2 /* ThreadListScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EE025BEB29400AD8DE2 /* ThreadListScreenViewModel.swift */; };
 		C1564EB025BEC4DA00EAB937 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1564EAF25BEC4DA00EAB937 /* ThreadCell.swift */; };
 		C1758C8A25C14AD7005FDE6F /* BoardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1758C8925C14AD7005FDE6F /* BoardListModel.swift */; };
+		C197832C25D148DC006A8CC3 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197832B25D148DC006A8CC3 /* GalleryViewController.swift */; };
 		C1AA8DC2E69743FA1136253E /* Pods_IichDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A53C6403386A5A0CA2BFD29 /* Pods_IichDemoTests.framework */; };
 		C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */; };
 		C1C0BB6025C2C50000E208FB /* ThreadCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C0BB5F25C2C50000E208FB /* ThreadCellModel.swift */; };
@@ -77,6 +79,7 @@
 		C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadMessagesModel.swift; sourceTree = "<group>"; };
 		C10A5B8125C8277900427D78 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		C10A5B8725CD499400427D78 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C11E1D5F25D15D4E0001E8BA /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14D4EA925BD70EB00AD8DE2 /* Boards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boards.swift; sourceTree = "<group>"; };
 		C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfo.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		C14D4EE025BEB29400AD8DE2 /* ThreadListScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadListScreenViewModel.swift; sourceTree = "<group>"; };
 		C1564EAF25BEC4DA00EAB937 /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		C1758C8925C14AD7005FDE6F /* BoardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListModel.swift; sourceTree = "<group>"; };
+		C197832B25D148DC006A8CC3 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		C1AD538825BD47FF005E0513 /* HomeScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenCell.swift; sourceTree = "<group>"; };
 		C1C0BB5F25C2C50000E208FB /* ThreadCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCellModel.swift; sourceTree = "<group>"; };
 		C1CC5B1025BBC834000D31B7 /* IichDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IichDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +198,15 @@
 			path = ThreadListScreen;
 			sourceTree = "<group>";
 		};
+		C197832A25D148C3006A8CC3 /* GalleryScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C197832B25D148DC006A8CC3 /* GalleryViewController.swift */,
+				C11E1D5F25D15D4E0001E8BA /* Storyboard.storyboard */,
+			);
+			path = GalleryScreen;
+			sourceTree = "<group>";
+		};
 		C1CC5B0725BBC834000D31B7 = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +238,7 @@
 				C1CC5BEF25BBD85E000D31B7 /* HomeScreen */,
 				C14D4ED225BE9E7A00AD8DE2 /* ThreadListScreen */,
 				C10A5B6E25C8082700427D78 /*  ThreadScreen */,
+				C197832A25D148C3006A8CC3 /* GalleryScreen */,
 				C1CC5BEB25BBD81F000D31B7 /* Resources */,
 				C1CC5BE725BBD6E7000D31B7 /* Commons */,
 			);
@@ -408,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CC5C5425BBFE03000D31B7 /* Colors.xcassets in Resources */,
+				C11E1D6025D15D4E0001E8BA /* Storyboard.storyboard in Resources */,
 				C1CC5B2025BBC834000D31B7 /* LaunchScreen.storyboard in Resources */,
 				C1CC5B1D25BBC834000D31B7 /* Assets.xcassets in Resources */,
 			);
@@ -608,6 +623,7 @@
 				C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */,
 				C10A5B4625C56AB200427D78 /* CustomSearchController.swift in Sources */,
 				C1CC5B1625BBC834000D31B7 /* SceneDelegate.swift in Sources */,
+				C197832C25D148DC006A8CC3 /* GalleryViewController.swift in Sources */,
 				C10A5B8825CD499400427D78 /* Date+Extension.swift in Sources */,
 				C1AD538925BD47FF005E0513 /* HomeScreenCell.swift in Sources */,
 				C10A5B3725C54D3C00427D78 /* ThreadFooterView.swift in Sources */,

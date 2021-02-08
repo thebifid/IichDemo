@@ -95,11 +95,39 @@ class MessageCell: UITableViewCell {
 
     var didReplyLinkClicked: ((Int) -> Void)?
     var didAnswersButtonClicked: ((Int) -> Void)?
+    var didImageClicked: (([Int: String]) -> Void)?
 
     // MARK: - Private Properties
 
     private let group = ConstraintGroup()
     private var num: Int = 0
+
+    // MARK: - Private Methods
+
+    private func addImageViewAction() {
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        firstImageView.addGestureRecognizer(tapGestureRecognizer1)
+
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        secondImageView.addGestureRecognizer(tapGestureRecognizer2)
+
+        let tapGestureRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        thirdImageView.addGestureRecognizer(tapGestureRecognizer3)
+
+        let tapGestureRecognizer4 = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        fourthImageView.addGestureRecognizer(tapGestureRecognizer4)
+    }
+
+    // MARK: - Selectors
+
+    @objc private func anserwsButtonPressed() {
+        didAnswersButtonClicked?(num)
+    }
+
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        didImageClicked?([tappedImage.tag: tappedImage.sd_imageURL!.absoluteString])
+    }
 
     // MARK: - Public Methods
 
@@ -113,16 +141,7 @@ class MessageCell: UITableViewCell {
     }
 
     func setupCell(message: Message) {
-        if let replies = message.replies {
-            answersButton.setTitle("\(replies.count) replies", for: .normal)
-        }
-        num = message.num
-
-        let timeAgo = Date().offsetFrom(date: Date(timeIntervalSince1970: TimeInterval(message.timestamp)))
-        timeAgoLabel.text = "\(timeAgo)"
-
-        messageInfoLabel.text = "#\(message.number) • \(message.num)"
-
+        addImageViewAction()
         let all = Style.font(.systemFont(ofSize: 20))
         let link = Style("a").foregroundColor(.orange, .normal).foregroundColor(.gray, .highlighted)
         let strong = Style("strong").font(.boldSystemFont(ofSize: 18))
@@ -135,6 +154,14 @@ class MessageCell: UITableViewCell {
         let quote = Style("quote").foregroundColor(R.color.quoteGreen()!)
         let strikethrough = Style("strikethrough").strikethroughStyle(NSUnderlineStyle.single)
         let em = Style("em").font(.italicSystemFont(ofSize: 18))
+
+        if let replies = message.replies {
+            answersButton.setTitle("\(replies.count) replies", for: .normal)
+        }
+        num = message.num
+        let timeAgo = Date().offsetFrom(date: Date(timeIntervalSince1970: TimeInterval(message.timestamp)))
+        timeAgoLabel.text = "\(timeAgo)"
+        messageInfoLabel.text = "#\(message.number) • \(message.num)"
 
         messageLabel.attributedText = message.comment.fromSpanToTag(className: [.quote, .spoiler, .strikethrough])
             .spacingBetweenBlockTags()
@@ -163,29 +190,29 @@ class MessageCell: UITableViewCell {
         if !message.files.isEmpty {
             guard let url = URL(string: "https://2ch.hk\(message.files[0].thumbnail!)") else { return }
             firstImageView.sd_setImage(with: url, completed: nil)
+            firstImageView.isUserInteractionEnabled = true
+            firstImageView.tag = message.number
             if message.files.count > 1 {
                 guard let url = URL(string: "https://2ch.hk\(message.files[1].thumbnail!)") else { return }
                 secondImageView.sd_setImage(with: url, completed: nil)
-
+                secondImageView.isUserInteractionEnabled = true
+                secondImageView.tag = message.number
                 if message.files.count > 2 {
                     guard let url = URL(string: "https://2ch.hk\(message.files[2].thumbnail!)") else { return }
                     thirdImageView.sd_setImage(with: url, completed: nil)
-
+                    thirdImageView.isUserInteractionEnabled = true
+                    thirdImageView.tag = message.number
                     if message.files.count > 3 {
                         guard let url = URL(string: "https://2ch.hk\(message.files[3].thumbnail!)") else { return }
                         fourthImageView.sd_setImage(with: url, completed: nil)
+                        fourthImageView.isUserInteractionEnabled = true
+                        fourthImageView.tag = message.number
                     }
                 }
             }
         }
         setupUI(haveAttachements: !message.files.isEmpty)
         answersButton.addTarget(self, action: #selector(anserwsButtonPressed), for: .touchUpInside)
-    }
-
-    // MARK: - Selectors
-
-    @objc private func anserwsButtonPressed() {
-        didAnswersButtonClicked?(num)
     }
 
     // MARK: - UI Actions

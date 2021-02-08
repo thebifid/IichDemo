@@ -17,6 +17,13 @@ class ThreadListScreenViewController: UIViewController, UISearchBarDelegate {
 
     private var myCollectionView: UICollectionView?
 
+    private let activityIndicatorView: UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView(style: .large)
+        ai.hidesWhenStopped = true
+        ai.color = .white
+        return ai
+    }()
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -24,6 +31,7 @@ class ThreadListScreenViewController: UIViewController, UISearchBarDelegate {
 
         enableBinding()
         viewModel.requestThreads { _ in }
+        activityIndicatorView.startAnimating()
         setupCollectionView()
         setupSearchBar()
     }
@@ -33,6 +41,7 @@ class ThreadListScreenViewController: UIViewController, UISearchBarDelegate {
     private func enableBinding() {
         viewModel.didUpdateModel = { [weak self] in
             DispatchQueue.main.async {
+                self?.activityIndicatorView.stopAnimating()
                 self?.myCollectionView?.reloadData()
             }
         }
@@ -42,9 +51,7 @@ class ThreadListScreenViewController: UIViewController, UISearchBarDelegate {
 
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
-
         layout.sectionInset = .init(top: 20, left: 5, bottom: 20, right: 5)
-
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         collectionView.alwaysBounceVertical = true
         myCollectionView = collectionView
@@ -61,6 +68,12 @@ class ThreadListScreenViewController: UIViewController, UISearchBarDelegate {
             collectionView.edges == collectionView.superview!.edges
         }
         collectionView.backgroundColor = R.color.background()
+
+        collectionView.addSubview(activityIndicatorView)
+        constrain(activityIndicatorView) { ai in
+            ai.centerX == ai.superview!.centerX
+            ai.centerY == ai.superview!.top + 100
+        }
     }
 
     private func setupSearchBar() {
@@ -148,13 +161,13 @@ extension ThreadListScreenViewController: UICollectionViewDelegate, UICollection
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == viewModel.filteredData.threads.count - 1 {
-            viewModel.requestThreads { result in
+            viewModel.requestThreads { [weak self] result in
                 switch result {
                 case let .failure(error):
                     print(error.localizedDescription)
                 case .success:
                     DispatchQueue.main.async {
-                        self.myCollectionView!.reloadData()
+                        self?.myCollectionView?.reloadData()
                     }
                 }
             }

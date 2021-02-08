@@ -5,6 +5,7 @@
 //  Created by Vasiliy Matveev on 01.02.2021.
 //
 
+import Cartography
 import UIKit
 
 class ThreadScreenViewController: UITableViewController {
@@ -12,31 +13,65 @@ class ThreadScreenViewController: UITableViewController {
 
     private let viewModel: ThreadScreenViewModel
 
+    // MARK: - UI Controls
+
+    private let activityIndicatorView: UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView(style: .large)
+        ai.color = .white
+        ai.hidesWhenStopped = true
+        return ai
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         enableDataBinding()
+        makeRequest()
+        setupTableView()
+    }
+
+    // MARK: - Private Methods
+
+    private func makeRequest() {
+        activityIndicatorView.startAnimating()
+        if viewModel.posts.isEmpty {
+            viewModel.requestThreadMessages()
+        }
+    }
+
+    // MARK: - UI Actions
+
+    private func setupTableView() {
         tableView.separatorColor = .gray
         tableView.allowsSelection = false
         tableView.register(MessageCell.self, forCellReuseIdentifier: "cellId")
         tableView.backgroundColor = R.color.background()
-
-        if viewModel.posts.isEmpty {
-            viewModel.requestThreadMessages()
-        } else {}
-
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
+        tableView.tableFooterView = UIView(frame: .zero)
+
+        tableView.addSubview(activityIndicatorView)
+        constrain(activityIndicatorView) { ai in
+            ai.centerX == ai.superview!.centerX
+            ai.top == ai.superview!.top + 100
+        }
     }
 
     // MARK: - Data Binding
 
     private func enableDataBinding() {
-        viewModel.didUpdateHandler = {
+        viewModel.didUpdateHandler = { [weak self] in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self.activityIndicatorView.stopAnimating()
+                UIView.transition(with: self.tableView,
+                                  duration: 0.35,
+                                  options: .transitionCrossDissolve,
+                                  animations: {
+                                      self.tableView.reloadData()
+                                  })
             }
         }
     }

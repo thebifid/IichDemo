@@ -15,7 +15,12 @@ class ThreadScreenViewModel {
     private let filter: Int
     private let onePostShow: Int
 
-    // MARK: = Public Properties
+    // MARK: - Cache
+
+    var cachedFilteredData: [Message] = []
+    var cachedFilterPost: [Message] = []
+
+    // MARK: - Public Properties
 
     var replies: [String: [Int]] = [:]
 
@@ -31,7 +36,6 @@ class ThreadScreenViewModel {
             switch filterPost(postsNum: onePostShow) {
             case let .success(message):
                 return message
-
             default:
                 break
             }
@@ -41,19 +45,23 @@ class ThreadScreenViewModel {
     }
 
     func filtedData(withFiler filter: Int) -> [Message] {
+        guard cachedFilteredData.isEmpty else { return cachedFilteredData }
         var filteredNums: [Int] = []
         var filtered: [Message] = []
         filteredNums = threadMessages.first(where: { $0.num == filter })?.replies ?? []
         filteredNums.forEach { filtNum in
             filtered += threadMessages.filter { $0.num == filtNum }
         }
+        cachedFilteredData = filtered
         return filtered
     }
 
     func filterPost(postsNum: Int) -> Result<[Message], Error> {
+        guard cachedFilterPost.isEmpty else { return .success(cachedFilterPost) }
         var message: [Message] = []
         if let post = threadMessages.first(where: { $0.num == postsNum }) {
             message.append(post)
+            cachedFilterPost = message
             return .success(message)
         } else {
             let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Нет такого поста"])

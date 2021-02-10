@@ -95,7 +95,7 @@ class MessageCell: UITableViewCell {
 
     var didReplyLinkClicked: ((Int) -> Void)?
     var didAnswersButtonClicked: ((Int) -> Void)?
-    var didImageClicked: (([Int: String]) -> Void)?
+    var didImageClicked: ((Int) -> Void)?
 
     // MARK: - Private Properties
 
@@ -126,7 +126,7 @@ class MessageCell: UITableViewCell {
 
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        didImageClicked?([tappedImage.tag: tappedImage.sd_imageURL!.absoluteString])
+        didImageClicked?(tappedImage.tag)
     }
 
     // MARK: - Public Methods
@@ -191,22 +191,22 @@ class MessageCell: UITableViewCell {
             guard let url = URL(string: "https://2ch.hk\(message.files[0].thumbnail!)") else { return }
             firstImageView.sd_setImage(with: url, completed: nil)
             firstImageView.isUserInteractionEnabled = true
-            firstImageView.tag = message.number
+            firstImageView.tag = message.files[0].fileNumber!
             if message.files.count > 1 {
                 guard let url = URL(string: "https://2ch.hk\(message.files[1].thumbnail!)") else { return }
                 secondImageView.sd_setImage(with: url, completed: nil)
                 secondImageView.isUserInteractionEnabled = true
-                secondImageView.tag = message.number
+                secondImageView.tag = message.files[1].fileNumber!
                 if message.files.count > 2 {
                     guard let url = URL(string: "https://2ch.hk\(message.files[2].thumbnail!)") else { return }
                     thirdImageView.sd_setImage(with: url, completed: nil)
                     thirdImageView.isUserInteractionEnabled = true
-                    thirdImageView.tag = message.number
+                    thirdImageView.tag = message.files[2].fileNumber!
                     if message.files.count > 3 {
                         guard let url = URL(string: "https://2ch.hk\(message.files[3].thumbnail!)") else { return }
                         fourthImageView.sd_setImage(with: url, completed: nil)
                         fourthImageView.isUserInteractionEnabled = true
-                        fourthImageView.tag = message.number
+                        fourthImageView.tag = message.files[3].fileNumber!
                     }
                 }
             }

@@ -26,7 +26,7 @@ struct Message: Decodable {
     let date: String
     let email: String
     let endless: Int
-    let files: [Attachements]
+    var files: [Attachements]
     let lasthit: Int
     let name: String
     let num: Int
@@ -53,4 +53,5 @@ struct Attachements: Decodable {
     let tn_height: Int?
     let tn_width: Int?
     let width: Int?
+    var fileNumber: Int?
 }

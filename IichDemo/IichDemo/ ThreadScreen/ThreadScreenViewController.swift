@@ -113,14 +113,14 @@ class ThreadScreenViewController: UITableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
 
-        cell.didImageClicked = { [weak self] dict in
-            if let originalPath = self?.viewModel.posts[dict.first!.key - 1]
-                .files.first(where: { dict.first!.value.contains($0.thumbnail!) })?.path {
-                let galleryVC = GalleryViewController(pathToOriginal: originalPath)
-                let navGalleryVC = UINavigationController(rootViewController: galleryVC)
-                navGalleryVC.modalPresentationStyle = .fullScreen
-                self?.present(navGalleryVC, animated: true, completion: nil)
-            }
+        cell.didImageClicked = { [weak self] position in
+            print(position)
+            guard let self = self else { return }
+            let galleryVM = GalleryViewModel(withFiles: self.viewModel.files)
+            let galleryVC = GalleryViewController(viewModel: galleryVM, openAtPosition: position)
+            let navGalleryVC = UINavigationController(rootViewController: galleryVC)
+            navGalleryVC.modalPresentationStyle = .fullScreen
+            self.present(navGalleryVC, animated: true, completion: nil)
         }
 
         cell.setupCell(message: viewModel.posts[indexPath.row])

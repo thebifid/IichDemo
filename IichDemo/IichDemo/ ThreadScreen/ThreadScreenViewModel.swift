@@ -28,6 +28,12 @@ class ThreadScreenViewModel {
         return threadMessages
     }
 
+    var files: [Attachements] {
+        var files: [Attachements] = []
+        threadMessages.forEach { files.append(contentsOf: $0.files) }
+        return files
+    }
+
     var posts: [Message] {
         if filter != 0 {
             return filtedData(withFiler: filter)
@@ -112,8 +118,21 @@ class ThreadScreenViewModel {
 
             case let .success(threadMessages):
                 self?.threadMessages = threadMessages.threads[0].posts
+                self?.addFileNumbers()
                 self?.findReplies()
                 self?.didUpdateHandler?()
+            }
+        }
+    }
+
+    private func addFileNumbers() {
+        var index = 0
+        threadMessages.enumerated().forEach { threadIndex, threadMessage in
+            if !threadMessage.files.isEmpty {
+                threadMessage.files.enumerated().forEach { fileIndex, _ in
+                    threadMessages[threadIndex].files[fileIndex].fileNumber = index
+                    index += 1
+                }
             }
         }
     }

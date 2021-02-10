@@ -18,7 +18,8 @@
 		C10A5B7A25C81DB700427D78 /* ThreadMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */; };
 		C10A5B8225C8277900427D78 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B8125C8277900427D78 /* MessageCell.swift */; };
 		C10A5B8825CD499400427D78 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5B8725CD499400427D78 /* Date+Extension.swift */; };
-		C11E1D6025D15D4E0001E8BA /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11E1D5F25D15D4E0001E8BA /* Storyboard.storyboard */; };
+		C11E1D6525D168820001E8BA /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E1D6425D168820001E8BA /* ImageCell.swift */; };
+		C11E1D6A25D16B4E0001E8BA /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E1D6925D16B4E0001E8BA /* GalleryViewModel.swift */; };
 		C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */; };
 		C14D4EAA25BD70EB00AD8DE2 /* Boards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EA925BD70EB00AD8DE2 /* Boards.swift */; };
 		C14D4EB625BDA39100AD8DE2 /* BoardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */; };
@@ -79,7 +80,8 @@
 		C10A5B7925C81DB700427D78 /* ThreadMessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadMessagesModel.swift; sourceTree = "<group>"; };
 		C10A5B8125C8277900427D78 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		C10A5B8725CD499400427D78 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		C11E1D5F25D15D4E0001E8BA /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		C11E1D6425D168820001E8BA /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		C11E1D6925D16B4E0001E8BA /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
 		C14D4EA425BD68A400AD8DE2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14D4EA925BD70EB00AD8DE2 /* Boards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boards.swift; sourceTree = "<group>"; };
 		C14D4EB525BDA39100AD8DE2 /* BoardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardInfo.swift; sourceTree = "<group>"; };
@@ -202,7 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				C197832B25D148DC006A8CC3 /* GalleryViewController.swift */,
-				C11E1D5F25D15D4E0001E8BA /* Storyboard.storyboard */,
+				C11E1D6425D168820001E8BA /* ImageCell.swift */,
+				C11E1D6925D16B4E0001E8BA /* GalleryViewModel.swift */,
 			);
 			path = GalleryScreen;
 			sourceTree = "<group>";
@@ -422,7 +425,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CC5C5425BBFE03000D31B7 /* Colors.xcassets in Resources */,
-				C11E1D6025D15D4E0001E8BA /* Storyboard.storyboard in Resources */,
 				C1CC5B2025BBC834000D31B7 /* LaunchScreen.storyboard in Resources */,
 				C1CC5B1D25BBC834000D31B7 /* Assets.xcassets in Resources */,
 			);
@@ -608,11 +610,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11E1D6A25D16B4E0001E8BA /* GalleryViewModel.swift in Sources */,
 				C10A5B7025C8084200427D78 /* ThreadScreenViewController.swift in Sources */,
 				C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */,
 				C10A5B6425C7F59B00427D78 /* String+Extension.swift in Sources */,
 				C10A5B7525C810A400427D78 /* ThreadScreenViewModel.swift in Sources */,
 				C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */,
+				C11E1D6525D168820001E8BA /* ImageCell.swift in Sources */,
 				C1C0BB6025C2C50000E208FB /* ThreadCellModel.swift in Sources */,
 				C1CC5B1425BBC834000D31B7 /* AppDelegate.swift in Sources */,
 				C14D4ED725BE9F2000AD8DE2 /* ThreadListScreenViewController.swift in Sources */,

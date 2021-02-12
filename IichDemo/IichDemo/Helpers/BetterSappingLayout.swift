@@ -9,6 +9,8 @@
 import UIKit
 
 class BetterSappingLayout: UICollectionViewFlowLayout {
+    var didIndexChanged: ((Int) -> Void)?
+
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint,
                                       withScrollingVelocity velocity: CGPoint) -> CGPoint {
         guard let collectionView = collectionView else {
@@ -35,6 +37,9 @@ class BetterSappingLayout: UICollectionViewFlowLayout {
             }
         }
 
+        if offsetAdjustment < 100000 {
+            didIndexChanged?(Int((proposedContentOffset.x + offsetAdjustment) / (Constants.deviceWidth + 10) + 1))
+        }
         return CGPoint(x: proposedContentOffset.x + offsetAdjustment, y: proposedContentOffset.y)
     }
 }

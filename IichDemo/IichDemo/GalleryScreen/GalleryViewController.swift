@@ -28,7 +28,7 @@ class GalleryViewController: UIViewController {
         super.viewWillAppear(animated)
         if let indexPath = viewModel.scrollToIndexPath {
             collectionView?.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
-            navigationItem.title = "\(indexPath.item + 1) / \(viewModel.files.count)"
+            navigationItem.title = "\(indexPath.item + 1) of \(viewModel.files.count)"
         }
     }
 
@@ -38,6 +38,10 @@ class GalleryViewController: UIViewController {
         navigationItem.title = "Gallery"
 
         let layout = BetterSappingLayout()
+        layout.didIndexChanged = { [weak self] index in
+            guard let self = self else { return }
+            self.navigationItem.title = "\(index) of \(self.viewModel.files.count)"
+        }
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         collectionView.decelerationRate = .fast
@@ -93,11 +97,4 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width, height: Constants.deviceHeight / 1.5)
     }
-
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        if let cell = collectionView?.visibleCells[0] {
-//            guard let indexPath = collectionView?.indexPath(for: cell) else { return }
-//            navigationItem.title = "\(indexPath.item) / \(viewModel.files.count)"
-//        }
-//    }
 }

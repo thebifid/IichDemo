@@ -10,6 +10,8 @@ import Foundation
 class GalleryViewModel {
     // MARK: - Private Properties
 
+    // MARK: - Handlers
+
     // MARK: - Public Properties
 
     var files: [Attachements] = []

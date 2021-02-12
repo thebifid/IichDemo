@@ -43,6 +43,7 @@
 		C1CC5C6125BC0689000D31B7 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */; };
 		C1CC5C6625BC078E000D31B7 /* AlertAssist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */; };
 		C1CC5C8725BC3F1B000D31B7 /* Desks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1CC5C8525BC3F1B000D31B7 /* Desks.xcdatamodeld */; };
+		C1FFCEBD25D416A000EE80C7 /* BetterSappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFCEBC25D416A000EE80C7 /* BetterSappingLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		C1CC5C6025BC0689000D31B7 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAssist.swift; sourceTree = "<group>"; };
 		C1CC5C8625BC3F1B000D31B7 /* Desks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Desks.xcdatamodel; sourceTree = "<group>"; };
+		C1FFCEBC25D416A000EE80C7 /* BetterSappingLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSappingLayout.swift; sourceTree = "<group>"; };
 		F1523F57C046DF40740D4E05 /* Pods-IichDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IichDemoTests.release.xcconfig"; path = "Target Support Files/Pods-IichDemoTests/Pods-IichDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -296,6 +298,7 @@
 				C1CC5C6525BC078E000D31B7 /* AlertAssist.swift */,
 				C10A5B4025C5662800427D78 /* SearchBar.swift */,
 				C10A5B4525C56AB200427D78 /* CustomSearchController.swift */,
+				C1FFCEBC25D416A000EE80C7 /* BetterSappingLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 			files = (
 				C11E1D6A25D16B4E0001E8BA /* GalleryViewModel.swift in Sources */,
 				C10A5B7025C8084200427D78 /* ThreadScreenViewController.swift in Sources */,
+				C1FFCEBD25D416A000EE80C7 /* BetterSappingLayout.swift in Sources */,
 				C14D4EA525BD68A400AD8DE2 /* NetworkService.swift in Sources */,
 				C10A5B6425C7F59B00427D78 /* String+Extension.swift in Sources */,
 				C10A5B7525C810A400427D78 /* ThreadScreenViewModel.swift in Sources */,

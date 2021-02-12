@@ -114,7 +114,6 @@ class ThreadScreenViewController: UITableViewController {
         }
 
         cell.didImageClicked = { [weak self] position in
-            print(position)
             guard let self = self else { return }
             let galleryVM = GalleryViewModel(withFiles: self.viewModel.files)
             let galleryVC = GalleryViewController(viewModel: galleryVM, openAtPosition: position)

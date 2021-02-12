@@ -6,7 +6,6 @@
 //
 
 import Cartography
-import SDWebImage
 import UIKit
 
 class GalleryViewController: UIViewController {
@@ -29,6 +28,7 @@ class GalleryViewController: UIViewController {
         super.viewWillAppear(animated)
         if let indexPath = viewModel.scrollToIndexPath {
             collectionView?.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
+            navigationItem.title = "\(indexPath.item + 1) / \(viewModel.files.count)"
         }
     }
 
@@ -37,10 +37,10 @@ class GalleryViewController: UIViewController {
     private func setupUI() {
         navigationItem.title = "Gallery"
 
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = .init(top: 20, left: 5, bottom: 20, right: 5)
+        let layout = BetterSappingLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        collectionView.decelerationRate = .fast
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -85,13 +85,19 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ImageCell
-        let url = URL(string: "https://2ch.hk\(viewModel.files[indexPath.row].path!)")
-        cell.imageView.sd_setImage(with: url!, completed: nil)
+        cell.setupCell(file: viewModel.files[indexPath.row])
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: Constants.deviceWidth, height: 600)
+        return .init(width: view.frame.width, height: Constants.deviceHeight / 1.5)
     }
+
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        if let cell = collectionView?.visibleCells[0] {
+//            guard let indexPath = collectionView?.indexPath(for: cell) else { return }
+//            navigationItem.title = "\(indexPath.item) / \(viewModel.files.count)"
+//        }
+//    }
 }
